@@ -25,16 +25,16 @@ class MemoRecordSerializer(serializers.ModelSerializer):
     class Meta:
         model = MemoRecord
         fields = [
-            "record_Id",
-            "subject_Type",
-            "importance_Level",
-            "author",
-            "memo_History",
-            "nominal_start_date",
-            "Check_Points",
-            "in_half_year_repetition",
+            # "record_Id",
+            # "subject_Type",
+            # "importance_Level",
+            # "author",
+            # "memo_History",
+            # "nominal_start_date",
+            # "Study_Check_Points",
+            # "in_half_year_repetition",
             "record_Details",
-            "recordNeighbor",
+            # "recordNeighbor",
         ]
         extra_kwargs = {
             "author": {"read_only": True},

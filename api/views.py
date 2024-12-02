@@ -53,22 +53,18 @@ class CreateUserView(generics.CreateAPIView):
 
 # MemoRecord List and Create View
 class MemoRecordListCreate(generics.ListCreateAPIView):
-    queryset = MemoRecord.objects.all()
     serializer_class = MemoRecordSerializer
     permission_classes = [IsAuthenticated]
  
     def get_queryset(self):
         user = self.request.user
-        return MemoRecord.objects
+        return MemoRecord.objects.filter(author=user)
 
     def perform_create(self, serializer):
         if serializer.is_valid():
            serializer.save(author=self.request.user)
         else:
             print(serializer.errors)
-
-
-
 
 # MemoRecord Retrieve, Update, Delete View
 class MemoRecordRetrieveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):

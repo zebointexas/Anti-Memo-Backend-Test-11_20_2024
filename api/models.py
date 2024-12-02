@@ -38,7 +38,7 @@ class MemoRecord(models.Model):
         choices=[(tag.value, tag.name) for tag in SubjectType], 
         default=SubjectType.Algo.value,
     )
-    importance_Level = models.SmallIntegerField()
+    importance_Level = models.SmallIntegerField(default=1)
     author = models.ForeignKey(
         User, 
         on_delete=models.CASCADE, 
@@ -47,7 +47,7 @@ class MemoRecord(models.Model):
     )
     memo_History = models.TextField()    
     nominal_start_date = models.DateTimeField(default=timezone.now)
-    Check_Points = models.TextField(
+    Study_Check_Points = models.TextField(
         default=""" Day_1: false
                     Day_1_repeat: false
                     Day_2: false
@@ -67,7 +67,8 @@ class MemoRecord(models.Model):
     )
     in_half_year_repetition = models.BooleanField(default=False)
     record_Details = models.TextField()
-    recordNeighbor = models.CharField(max_length=100)
+    recordNeighbor = models.CharField(max_length=100, default="N/A")
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.record_Details
