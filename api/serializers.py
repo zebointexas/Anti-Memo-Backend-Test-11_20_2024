@@ -25,7 +25,7 @@ class MemoRecordSerializer(serializers.ModelSerializer):
     class Meta:
         model = MemoRecord
         fields = [
-            "record_Id",
+            "id",
             "subject_Type",
             "importance_Level",
             # "author",

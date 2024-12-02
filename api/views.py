@@ -67,12 +67,12 @@ class MemoRecordListCreate(generics.ListCreateAPIView):
             print(serializer.errors)
 
 class MemoRecordDelete(generics.DestroyAPIView):
-    serializer_class = NoteSerializer
+    serializer_class = MemoRecordSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
-        return Note.objects.filter(author=user)
+        return MemoRecord.objects.filter(author=user)
 
 # MemoRecord Retrieve, Update, Delete View
 class MemoRecordRetrieveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):

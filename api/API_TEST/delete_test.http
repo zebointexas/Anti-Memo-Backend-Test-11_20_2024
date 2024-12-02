@@ -1,0 +1,2 @@
+DELETE http://127.0.0.1:8080/api/memo_records/delete/21/
+Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzMTI0OTI0LCJqdGkiOiI0OGQ1NDdjODE5NGE0ZjQzOTcxYWZiODljZTM1NTE1YyIsInVzZXJfaWQiOjF9.MKfEFBF8gqHi4Jg5v7MM0Eqz4bamPfSt2Igqfu3O4c0>
