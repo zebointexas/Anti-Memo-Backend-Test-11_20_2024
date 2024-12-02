@@ -31,7 +31,7 @@ class MemoRecordSerializer(serializers.ModelSerializer):
             # "author",
             # "memo_History",
             # "nominal_start_date",
-            # "Study_Check_Points",
+            "Study_Check_Points",
             # "in_half_year_repetition",
             "record_Details",
             # "recordNeighbor",

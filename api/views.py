@@ -1,3 +1,4 @@
+import logging
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework import generics
@@ -9,7 +10,8 @@ from .serializers import (
     OneTimeEventSerializer,
 )
 from .models import Note, MemoRecord, OneTimeEvent
-
+from django.utils import timezone
+from datetime import datetime
 
 # Note List and Create View
 class NoteListCreate(generics.ListCreateAPIView):
@@ -75,8 +77,7 @@ class MemoRecordDelete(generics.DestroyAPIView):
         return MemoRecord.objects.filter(author=user)
 
 # MemoRecord Retrieve, Update, Delete View
-class MemoRecordRetrieveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
-    queryset = MemoRecord.objects.all()
+class MemoRecordUpdate(generics.UpdateAPIView):
     serializer_class = MemoRecordSerializer
     permission_classes = [IsAuthenticated]
 
@@ -85,8 +86,25 @@ class MemoRecordRetrieveUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
         return MemoRecord.objects.filter(author=user)
 
     def perform_update(self, serializer):
+
         if serializer.is_valid():
-            serializer.save(author=self.request.user)  # Update the author to the current user (optional)
+            serializer.save(author=self.request.user)  # Optionally set the author to the current user
         else:
             print(serializer.errors)
  
+ 
+        current_date = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
+        
+        # 获取现有的 memo_History 内容（如果有的话）
+        memo_history = serializer.validated_data.get('memo_History', '')
+        
+        logging.error("memo_history = " + memo_history)
+
+        # 追加当前日期到 memo_History 内容的末尾
+        updated_memo_history = f"{memo_history}\nUpdated on: {current_date}"
+        
+        # 更新 memo_History 字段
+        serializer.validated_data['memo_History'] = updated_memo_history
+        
+        # 保存更新的数据
+        serializer.save(author=self.request.user)
