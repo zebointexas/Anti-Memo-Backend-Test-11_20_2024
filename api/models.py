@@ -30,6 +30,24 @@ class Note(models.Model):
     def __str__(self):
         return self.title
 
+def get_default_study_check_points():
+    return {
+        "Day_1": "false",
+        "Day_2": "false",
+        "Day_4": "false",
+        "Day_8": "false",
+        "Day_15": "false",
+        "Day_30": "false",
+        "Day_60": "false",
+        "Day_90": "false",
+        "Day_120": "false",
+        "Day_180": "false",
+        "Day_300": "false",
+        "Day_480": "false",
+        "Day_640": "false",
+        "Day_End": "false",
+    }
+
 # Memo Record Model
 class MemoRecord(models.Model):
     subject_Type = models.CharField(
@@ -46,24 +64,7 @@ class MemoRecord(models.Model):
     )
     memo_History = models.TextField()    
     nominal_start_date = models.DateTimeField(default=timezone.now)
-    Study_Check_Points = models.TextField(
-        default=""" Day_1: false
-                    Day_1_repeat: false
-                    Day_2: false
-                    Day_4: false
-                    Day_8: false
-                    Day_15: false
-                    Day_30: false
-                    Day_60: false
-                    Day_90: false
-                    Day_120: false
-                    Day_180: false
-                    Day_300: false
-                    Day_480: false
-                    Day_640: false
-                    Day_End: false
-                """
-    )
+    Study_Check_Points = models.JSONField(default=get_default_study_check_points)
     in_half_year_repetition = models.BooleanField(default=False)
     record_Details = models.TextField()
     recordNeighbor = models.CharField(max_length=100, default="N/A")

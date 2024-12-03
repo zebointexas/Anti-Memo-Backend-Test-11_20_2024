@@ -12,6 +12,7 @@ from .serializers import (
 from .models import Note, MemoRecord, OneTimeEvent
 from django.utils import timezone
 from datetime import datetime
+from django.utils.timezone import localtime, now
 
 # Note List and Create View
 class NoteListCreate(generics.ListCreateAPIView):
@@ -88,23 +89,23 @@ class MemoRecordUpdate(generics.UpdateAPIView):
     def perform_update(self, serializer):
 
         if serializer.is_valid():
-            serializer.save(author=self.request.user)  # Optionally set the author to the current user
+        # 获取当前更新的实例（数据库中的原始值）
+            instance = serializer.instance
+
+            remember_status = self.request.headers.get('Remember-Status', 'default_status')
+
+            print("remember_status = " + remember_status)
+
+            # 获取数据库中原有的 memo_History 值
+            memo_history = instance.memo_History or ''  # 防止 None 出现，默认空字符串
+            
+            # 获取当前时间
+            current_date = localtime(timezone.now()).strftime('%Y-%m-%d %H:%M:%S')
+
+            # 将新的更新时间追加到原有 memo_History
+            updated_memo_history = f"{memo_history}\nReviewed on: {current_date}    |    {remember_status}"
+
+            # 保存更新内容
+            serializer.save(memo_History=updated_memo_history, author=self.request.user)
         else:
             print(serializer.errors)
- 
- 
-        current_date = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
-        
-        # 获取现有的 memo_History 内容（如果有的话）
-        memo_history = serializer.validated_data.get('memo_History', '')
-        
-        logging.error("memo_history = " + memo_history)
-
-        # 追加当前日期到 memo_History 内容的末尾
-        updated_memo_history = f"{memo_history}\nUpdated on: {current_date}"
-        
-        # 更新 memo_History 字段
-        serializer.validated_data['memo_History'] = updated_memo_history
-        
-        # 保存更新的数据
-        serializer.save(author=self.request.user)

@@ -1,0 +1,182 @@
+Internal Server Error: /api/memo_records/update/1/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/generics.py", line 230, in put
+    return self.update(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/mixins.py", line 68, in update
+    self.perform_update(serializer)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 104, in perform_update
+    updated_memo_history = f"{memo_history}\nReviewed on: {current_date + status_value}"
+TypeError: must be str, not NoneType
+"PUT /api/memo_records/update/1/ HTTP/1.1" 500 106382
+Internal Server Error: /api/memo_records/update/2/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/generics.py", line 230, in put
+    return self.update(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/mixins.py", line 68, in update
+    self.perform_update(serializer)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 104, in perform_update
+    updated_memo_history = f"{memo_history}\nReviewed on: {current_date + status_value}"
+TypeError: must be str, not NoneType
+"PUT /api/memo_records/update/2/ HTTP/1.1" 500 106046
+Internal Server Error: /api/memo_records/update/1/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/generics.py", line 230, in put
+    return self.update(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/mixins.py", line 68, in update
+    self.perform_update(serializer)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 104, in perform_update
+    updated_memo_history = f"{memo_history}\nReviewed on: {current_date + status_value}"
+TypeError: must be str, not NoneType
+"PUT /api/memo_records/update/1/ HTTP/1.1" 500 106739
+Internal Server Error: /api/memo_records/update/1/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/generics.py", line 230, in put
+    return self.update(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/mixins.py", line 68, in update
+    self.perform_update(serializer)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 98, in perform_update
+    print("self.request.headers = " + self.request.headers)
+TypeError: must be str, not HttpHeaders
+Internal Server Error: /api/memo_records/update/1/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/generics.py", line 230, in put
+    return self.update(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/mixins.py", line 68, in update
+    self.perform_update(serializer)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 98, in perform_update
+    print("self.request.headers = " + self.request.headers)
+TypeError: must be str, not HttpHeaders
+"PUT /api/memo_records/update/1/ HTTP/1.1" 500 106049
+"PUT /api/memo_records/update/1/ HTTP/1.1" 500 106203
+Internal Server Error: /api/memo_records/update/1/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/generics.py", line 230, in put
+    return self.update(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/mixins.py", line 68, in update
+    self.perform_update(serializer)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 97, in perform_update
+    print("self.request.headers = " + self.request.headers)
+TypeError: must be str, not HttpHeaders
+Internal Server Error: /api/memo_records/update/1/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/generics.py", line 230, in put
+    return self.update(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/mixins.py", line 68, in update
+    self.perform_update(serializer)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 97, in perform_update
+    print("self.request.headers = " + self.request.headers)
+TypeError: must be str, not HttpHeaders
+"PUT /api/memo_records/update/1/ HTTP/1.1" 500 106243
+"PUT /api/memo_records/update/1/ HTTP/1.1" 500 106111

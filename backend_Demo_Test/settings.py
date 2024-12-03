@@ -32,6 +32,18 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.vercel.app']
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',  # 允许的前端源
+]
+
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'remember-status',  # 允许的自定义请求头
+    'Authorization',
+    # 你可以根据需要继续添加其他请求头
+]
+
+
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
@@ -130,20 +142,21 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
+ 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+USE_TZ = True
+
+TIME_ZONE = 'America/Vancouver'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+
 
 
 # Static files (CSS, JavaScript, Images)
