@@ -48,26 +48,45 @@ def get_default_study_check_points():
         "Day_End": "false",
     }
 
-# Memo Record Model
+class StudyPlan(models.Model):
+    nominal_start_date_for_progress_calculation = models.DateTimeField(default=timezone.now)
+    study_check_points = models.JSONField(default=get_default_study_check_points)
+
+class StudyHistory(models.Model):
+    study_history = models.TextField()   
+    today_study_count = models.SmallIntegerField(default=1)
+    record_details_change_history = models.TextField(default="") 
+
 class MemoRecord(models.Model):
-    subject_Type = models.CharField(
+    subject_type = models.CharField(
         max_length=20, 
         choices=[(tag.value, tag.name) for tag in SubjectType], 
         default=SubjectType.Algo.value,
     )
-    importance_Level = models.SmallIntegerField(default=1)
+    importance_level = models.SmallIntegerField(default=1)
     author = models.ForeignKey(
         User, 
         on_delete=models.CASCADE, 
         related_name="memo_records", 
         default=1  
     )
-    memo_History = models.TextField()    
-    nominal_start_date = models.DateTimeField(default=timezone.now)
-    Study_Check_Points = models.JSONField(default=get_default_study_check_points)
+    study_history = models.ForeignKey(
+        StudyHistory,
+        on_delete=models.CASCADE,
+        related_name="study_history_model", 
+        default=1
+    )
+    nominal_start_date_for_progress_calculation = models.DateTimeField(default=timezone.now)
+    study_plan = models.ForeignKey(
+        StudyPlan,
+        on_delete=models.CASCADE,
+        related_name="study_plan_model",
+        default=1
+    )
     in_half_year_repetition = models.BooleanField(default=False)
-    record_Details = models.TextField()
-    recordNeighbor = models.CharField(max_length=100, default="N/A")
+    record_details = models.TextField()
+    record_neighbor = models.CharField(max_length=100, default="N/A")
+    is_activate = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
