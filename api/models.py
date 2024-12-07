@@ -51,11 +51,13 @@ def get_default_study_check_points():
 class StudyPlan(models.Model):
     nominal_start_date_for_progress_calculation = models.DateTimeField(default=timezone.now)
     study_check_points = models.JSONField(default=get_default_study_check_points)
+    last_updated = models.DateTimeField(auto_now=True)
 
 class StudyHistory(models.Model):
     study_history = models.TextField()   
-    today_study_count = models.SmallIntegerField(default=1)
+    study_days_count = models.SmallIntegerField(default=1)
     record_details_change_history = models.TextField(default="") 
+    last_updated = models.DateTimeField(auto_now=True)
 
 class MemoRecord(models.Model):
     subject_type = models.CharField(
@@ -88,9 +90,10 @@ class MemoRecord(models.Model):
     record_neighbor = models.CharField(max_length=100, default="N/A")
     is_activate = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.record_Details
+        return self.record_details
 
 # OneTimeEvent Model
 class OneTimeEvent(models.Model):

@@ -29,7 +29,7 @@ class StudyPlanSerializer(serializers.ModelSerializer):
 class StudyHistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = StudyHistory
-        fields = ["id", "study_history", "today_study_count", "record_details_change_history"]
+        fields = ["id", "study_history", "study_days_count", "record_details_change_history", "last_updated"]
 
 # MemoRecord Serializer
 class MemoRecordSerializer(serializers.ModelSerializer):
