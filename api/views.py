@@ -400,7 +400,7 @@ class SubjectTypeList(generics.ListCreateAPIView):
     serializer_class = SubjectTypeSerializer
 
     def list(self, request, *args, **kwargs):
-        queryset = self.get_queryset().values('id', 'type')
+        queryset = self.get_queryset().values('id', 'type', 'category')
         return Response(queryset)
 
 class SubjectTypeCreate(generics.ListCreateAPIView):
