@@ -13,5 +13,5 @@ urlpatterns = [
     path("subject_types/create/", views.SubjectTypeCreate.as_view(), name="create-subject-type"),
     path("subject_types/delete/<int:pk>/", views.SubjectTypeDelete.as_view(), name="delete-subject-type"),
     path("category_list/", views.SubjectTypeList.as_view(), name="subject-types-list"),
-    # path("key_value_store/update/", views.SubjectTypeList.as_view(), name="subject-types-list"),
+    path("study_scope/update/", views.StudyScopeUpdate.as_view(), name="study-scope-update"),
 ]

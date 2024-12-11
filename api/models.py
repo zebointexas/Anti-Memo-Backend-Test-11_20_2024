@@ -35,6 +35,11 @@ class StudyScope(models.Model):
     study_scope = models.JSONField(default=get_default_study_scope)
     last_updated = models.DateTimeField(auto_now=True) 
 
+class StudyPlan(models.Model):
+    soft_reset_date = models.DateTimeField(auto_now_add=True)
+    check_points = models.JSONField(default=get_default_check_points)
+    last_updated = models.DateTimeField(auto_now=True)
+
 class SubjectType(models.Model):
     type = models.CharField(max_length=20)
     category = models.CharField(max_length=20, default="Default Category")
@@ -66,12 +71,6 @@ class StudyHistory(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
 
 class MemoRecord(models.Model):
-    author = models.ForeignKey(
-        User, 
-        on_delete=models.CASCADE, 
-        related_name="memo_records", 
-        default=1  
-    )
     study_scope_id = models.ForeignKey(
         StudyScope,
         on_delete=models.CASCADE,
@@ -97,6 +96,12 @@ class MemoRecord(models.Model):
     record_neighbor = models.CharField(max_length=100, default="N/A")
     next_study_time = models.DateTimeField(auto_now_add=True)
     is_activate = models.BooleanField(default=True)
+    author = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE, 
+        related_name="memo_records", 
+        default=1  
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
 

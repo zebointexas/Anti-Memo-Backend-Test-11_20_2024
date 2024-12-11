@@ -309,6 +309,10 @@ class MemoRecordCreate(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         if serializer.is_valid():
  
+            study_scope = StudyScope.objects.create(
+                study_scope=get_default_study_scope()
+            )
+ 
             study_plan = StudyPlan.objects.create(
                 check_points=get_default_check_points()
             )
@@ -319,7 +323,7 @@ class MemoRecordCreate(generics.ListCreateAPIView):
                 record_details_change_history="Initial History Details"
             )
 
-            memo_record = serializer.save(author=self.request.user, study_plan_id=study_plan, study_history_id=study_history);
+            memo_record = serializer.save(author=self.request.user, study_plan_id=study_plan, study_history_id=study_history, study_scope_id = study_scope);
         else:
             print(serializer.errors)
  
@@ -470,3 +474,22 @@ class MemoRecordUpdateRecordDetails(generics.UpdateAPIView):
         else:
             print(serializer.errors)
 
+
+class StudyScopeUpdate(generics.UpdateAPIView):
+    serializer_class = StudyScopeSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return None
+
+    def perform_update(self, serializer):
+        if serializer.is_valid():
+    
+            print("------------------------------------------------------------")
+            
+            # instance = serializer.instance
+            # record_details = self.request.data.get('record_details', None)
+            # instance.record_details = record_details
+            # instance.save()
+        else:
+            print(serializer.errors)
