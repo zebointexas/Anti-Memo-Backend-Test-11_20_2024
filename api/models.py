@@ -3,26 +3,6 @@ from django.contrib.auth.models import User
 from enum import Enum
 from django.utils import timezone
 
-# SubjectType Model
-class SubjectType(models.Model):
-    type = models.CharField(max_length=20)
-    category = models.CharField(max_length=20, default="Default Category")
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="subject_type")
-    created_at = models.DateTimeField(auto_now_add=True)  # 记录创建时间
-
-    def __str__(self):
-        return self.type
-    
-# Note Model
-class Note(models.Model):
-    title = models.CharField(max_length=100)
-    content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="notes")
-
-    def __str__(self):
-        return self.title
-
 def get_default_check_points():
     return {
         "1": "false",
@@ -45,6 +25,35 @@ def get_default_check_points():
         "1200": "false"
     }
 
+def get_default_study_scope():
+    return {
+        "subject_type": "all",
+        "category": "all"
+    }
+
+class StudyScope(models.Model):
+    study_scope = models.JSONField(default=get_default_study_scope)
+    last_updated = models.DateTimeField(auto_now=True) 
+
+class SubjectType(models.Model):
+    type = models.CharField(max_length=20)
+    category = models.CharField(max_length=20, default="Default Category")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="subject_type")
+    created_at = models.DateTimeField(auto_now_add=True)  # 记录创建时间
+
+    def __str__(self):
+        return self.type
+    
+# Note Model
+class Note(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="notes")
+
+    def __str__(self):
+        return self.title
+
 class StudyPlan(models.Model):
     soft_reset_date = models.DateTimeField(auto_now_add=True)
     check_points = models.JSONField(default=get_default_check_points)
@@ -57,8 +66,6 @@ class StudyHistory(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
 
 class MemoRecord(models.Model):
-    subject_type = models.CharField(max_length = 20)
-    importance_level = models.SmallIntegerField(default=1)
     author = models.ForeignKey(
         User, 
         on_delete=models.CASCADE, 
@@ -77,6 +84,8 @@ class MemoRecord(models.Model):
         related_name="study_plan_model",
         default=1
     )
+    subject_type = models.CharField(max_length = 20)
+    importance_level = models.SmallIntegerField(default=1)
     in_half_year_repetition = models.BooleanField(default=False)
     record_details = models.TextField()
     record_neighbor = models.CharField(max_length=100, default="N/A")

@@ -11,6 +11,11 @@ class SubjectTypeSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         return SubjectType.objects.create(**validated_data)
 
+class StudyScopeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StudyScope
+        fields = ['id', 'study_scope', 'last_updated']  # 需要序列化的字段
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
