@@ -72,6 +72,12 @@ class MemoRecord(models.Model):
         related_name="memo_records", 
         default=1  
     )
+    study_scope_id = models.ForeignKey(
+        StudyScope,
+        on_delete=models.CASCADE,
+        related_name="study_scope_model", 
+        default=1  
+    )
     study_history_id = models.ForeignKey(
         StudyHistory,
         on_delete=models.CASCADE,
