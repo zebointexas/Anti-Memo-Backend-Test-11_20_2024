@@ -33,18 +33,24 @@ def get_default_study_scope():
 
 class StudyScope(models.Model):
     study_scope = models.JSONField(default=get_default_study_scope)
+    author = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE, 
+        related_name="study_scope", 
+        default=1  
+    )
     last_updated = models.DateTimeField(auto_now=True) 
-
-class StudyPlan(models.Model):
-    soft_reset_date = models.DateTimeField(auto_now_add=True)
-    check_points = models.JSONField(default=get_default_check_points)
-    last_updated = models.DateTimeField(auto_now=True)
 
 class SubjectType(models.Model):
     type = models.CharField(max_length=20)
     category = models.CharField(max_length=20, default="Default Category")
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="subject_type")
-    created_at = models.DateTimeField(auto_now_add=True)  # 记录创建时间
+    author = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE, 
+        related_name="subject_type", 
+        default=1  
+    )
+    created_at = models.DateTimeField(auto_now_add=True)   
 
     def __str__(self):
         return self.type

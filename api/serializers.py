@@ -3,17 +3,17 @@ from rest_framework import serializers
 from .models import *
 
 class StudyScopeSerializer(serializers.ModelSerializer):
-    study_scope = serializers.JSONField()
-
     class Meta:
         model = StudyScope
-        fields = ['id', 'study_scope', 'last_updated']
-        read_only_fields = ['last_updated']
+        fields = ['id', 'study_scope', 'author', 'last_updated']
+
+    def create(self, validated_data):
+        return StudyScope.objects.create(**validated_data)
 
 class SubjectTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = SubjectType
-        fields = ['id', 'type', 'category', 'last_updated']
+        fields = ['id', 'type', 'category', 'created_at']
 
     def create(self, validated_data):
         return SubjectType.objects.create(**validated_data)

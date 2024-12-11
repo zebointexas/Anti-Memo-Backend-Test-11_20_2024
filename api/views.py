@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .serializers import *
-from .models import Note, MemoRecord, OneTimeEvent, StudyHistory, StudyPlan, get_default_check_points
+from .models import *
 from django.utils import timezone
 from datetime import datetime
 from django.utils.timezone import localtime, now
@@ -13,7 +13,6 @@ from dateutil.relativedelta import relativedelta
 from rest_framework.response import Response 
 from rest_framework import status
 from django.conf import settings
-from .models import SubjectType
 from django.http import JsonResponse
 
 ###########################################################################
@@ -353,52 +352,7 @@ class MemoRecordDelete(generics.DestroyAPIView):
             {"message": "MemoRecord and related StudyHistory and StudyPlan deleted successfully!"},
             status=status.HTTP_204_NO_CONTENT,
         )                
-
-class MemoRecordUpdate(generics.UpdateAPIView):
-    serializer_class = MemoRecordSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        user = self.request.user
-        return MemoRecord.objects.filter(author=user)
-
-    def perform_update(self, serializer):
-        if serializer.is_valid():
-            instance = serializer.instance
-            memo_record_id = self.kwargs.get('pk')
-            memo_record = MemoRecord.objects.filter(id=memo_record_id)
-
-            remember_status = self.request.headers.get('Remember-Status', 'default_status')
-            current_date = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
-
-            study_history_instance = instance.study_history_id
-            
-            if study_history_instance:
-                study_history = study_history_instance.study_history
-            else:
-                study_history = ''
-
-            updated_study_history = f"{study_history}\nReviewed on: {current_date}    |    {remember_status}"
-            memo_record.study_history = updated_study_history
-
-            study_history_instance.study_history = updated_study_history
-            study_history_instance.save()  
-
-            serializer.save(author=self.request.user)
-            print("Study history updated successfully.")
  
-            ############################################################ update next study time
-
-            history = study_history_instance.study_history   
-            last_updated_time = study_history_instance.last_updated
-            tmp = history.splitlines()
-            study_history_last_five_lines = tmp[-5:]  
-            # check_study_history(history, study_history_last_five_lines, last_updated_time)
-            # update_study_plan(history, study_history_last_five_lines)
-
-        else:
-            print(serializer.errors)
-
 class SubjectTypeList(generics.ListCreateAPIView):
     queryset = SubjectType.objects.all()
     serializer_class = SubjectTypeSerializer
@@ -474,22 +428,24 @@ class MemoRecordUpdateRecordDetails(generics.UpdateAPIView):
         else:
             print(serializer.errors)
 
-
 class StudyScopeUpdate(generics.UpdateAPIView):
     serializer_class = StudyScopeSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return None
+        user = self.request.user
+        return StudyScope.objects.filter(author=user)
 
     def perform_update(self, serializer):
         if serializer.is_valid():
-    
-            print("------------------------------------------------------------")
-            
-            # instance = serializer.instance
-            # record_details = self.request.data.get('record_details', None)
-            # instance.record_details = record_details
-            # instance.save()
+            instance = serializer.instance
+            updated_study_scope = self.request.data
+            instance.study_scope = updated_study_scope
+            # updated_study_scope = self.request.headers.get('Updated Study Scope', 'N/A')
+
+            print("--------------------------- instance ===> " + str(instance.study_scope))
+            print("--------------------------- instance ===> " + str(updated_study_scope))
+
+            instance.save()
         else:
             print(serializer.errors)
