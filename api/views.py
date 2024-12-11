@@ -243,42 +243,42 @@ class MemoRecordList(generics.ListCreateAPIView):
     serializer_class = MemoRecordSerializer
     permission_classes = [IsAuthenticated]
 
-    subjects = [
-        {"type": "Java", "category": "SDE_Interview", "author_id": 1},
-        {"type": "Python", "category": "SDE_Interview", "author_id": 1},
-        {"type": "Algo", "category": "SDE_Interview", "author_id": 1},
-        {"type": "System_Design", "category": "SDE_Interview", "author_id": 1},
-        {"type": "OOD", "category": "SDE_Interview", "author_id": 1},
-        {"type": "BQ", "category": "SDE_Interview", "author_id": 1},
-        {"type": "Linux", "category": "SRE", "author_id": 1},
-        {"type": "Network", "category": "SRE", "author_id": 1},
-        {"type": "General_IT", "category": "IT", "author_id": 1},
-        {"type": "French", "category": "Language", "author_id": 1},
-        {"type": "English", "category": "Language", "author_id": 1},
-        {"type": "Friends_Info", "category": "Social", "author_id": 1},
-        {"type": "Math", "category": "Mathematics", "author_id": 1},
-        {"type": "Machine_Learning", "category": "AI", "author_id": 1}
-    ]
+    # subjects = [
+    #     {"type": "Java", "category": "SDE_Interview", "author_id": 1},
+    #     {"type": "Python", "category": "SDE_Interview", "author_id": 1},
+    #     {"type": "Algo", "category": "SDE_Interview", "author_id": 1},
+    #     {"type": "System_Design", "category": "SDE_Interview", "author_id": 1},
+    #     {"type": "OOD", "category": "SDE_Interview", "author_id": 1},
+    #     {"type": "BQ", "category": "SDE_Interview", "author_id": 1},
+    #     {"type": "Linux", "category": "SRE", "author_id": 1},
+    #     {"type": "Network", "category": "SRE", "author_id": 1},
+    #     {"type": "General_IT", "category": "IT", "author_id": 1},
+    #     {"type": "French", "category": "Language", "author_id": 1},
+    #     {"type": "English", "category": "Language", "author_id": 1},
+    #     {"type": "Friends_Info", "category": "Social", "author_id": 1},
+    #     {"type": "Math", "category": "Mathematics", "author_id": 1},
+    #     {"type": "Machine_Learning", "category": "AI", "author_id": 1}
+    # ]
 
-    # 插入数据
-    for subject in subjects:
-        # 获取 `author` 实例，确保用户存在
-        try:
-            author = User.objects.get(id=subject["author_id"])
-        except User.DoesNotExist:
-            print(f"User with ID {subject['author_id']} does not exist. Skipping {subject['type']}.")
-            continue
+    # # 插入数据
+    # for subject in subjects:
+    #     # 获取 `author` 实例，确保用户存在
+    #     try:
+    #         author = User.objects.get(id=subject["author_id"])
+    #     except User.DoesNotExist:
+    #         print(f"User with ID {subject['author_id']} does not exist. Skipping {subject['type']}.")
+    #         continue
 
-        # 使用 `get_or_create` 避免重复插入
-        subject_type, created = SubjectType.objects.get_or_create(
-            type=subject["type"],
-            category=subject["category"],
-            author=author  # 绑定作者
-        )
-        if created:
-            print(f"Created: {subject['type']}")
-        else:
-            print(f"Already exists: {subject['type']}")
+    #     # 使用 `get_or_create` 避免重复插入
+    #     subject_type, created = SubjectType.objects.get_or_create(
+    #         type=subject["type"],
+    #         category=subject["category"],
+    #         author=author  # 绑定作者
+    #     )
+    #     if created:
+    #         print(f"Created: {subject['type']}")
+    #     else:
+    #         print(f"Already exists: {subject['type']}")
 
     def get_queryset(self):
         user = self.request.user
@@ -422,3 +422,51 @@ class SubjectTypeDelete(generics.DestroyAPIView):
         user = self.request.user
         return SubjectType.objects.filter(author=user)
         
+class MemoRecordUpdateStudyHistory(generics.UpdateAPIView):
+    serializer_class = MemoRecordSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return MemoRecord.objects.filter(author=user)
+
+    def perform_update(self, serializer):
+        if serializer.is_valid():
+ 
+            instance = serializer.instance
+            remember_status = self.request.headers.get('Remember-Status', 'default_status')
+            current_date = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
+            study_history_instance = instance.study_history_id
+            
+            if study_history_instance:
+                study_history = study_history_instance.study_history
+            else:
+                study_history = ''
+
+            updated_study_history = f"{study_history}\nReviewed on: {current_date}    |    {remember_status}"
+            instance.study_history = updated_study_history
+     
+            study_history_instance.study_history = updated_study_history
+            study_history_instance.save() 
+
+            print("Study history updated successfully.")
+        else:
+            print(serializer.errors)
+
+class MemoRecordUpdateRecordDetails(generics.UpdateAPIView):
+    serializer_class = MemoRecordSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return MemoRecord.objects.filter(author=user)
+
+    def perform_update(self, serializer):
+        if serializer.is_valid():
+            instance = serializer.instance
+            record_details = self.request.data.get('record_details', None)
+            instance.record_details = record_details
+            instance.save()
+        else:
+            print(serializer.errors)
+
