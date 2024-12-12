@@ -308,20 +308,40 @@ class MemoRecordCreate(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         if serializer.is_valid():
  
-            study_scope = StudyScope.objects.create(
-                study_scope=get_default_study_scope()
-            )
+            # study_scope = StudyScope.objects.create(
+            #     study_scope=get_default_study_scope()
+            # )
  
+            # study_plan = StudyPlan.objects.create(
+            #     check_points=get_default_check_points()
+            # )
+ 
+            # study_history = StudyHistory.objects.create(
+            #     study_history="Initial Study History",
+            #     study_days_count="1",
+            #     record_details_change_history="Initial History Details"
+            # )
+            user = self.request.user
+
+            try:
+                study_scope = StudyScope.objects.get(author=user)
+            except StudyScope.DoesNotExist:
+                # 如果不存在，则创建一个新的 StudyScope
+                study_scope = StudyScope.objects.create(
+                    study_scope=get_default_study_scope(),
+                    author=user
+                )
+
+            # 创建 StudyPlan 和 StudyHistory
             study_plan = StudyPlan.objects.create(
                 check_points=get_default_check_points()
             )
- 
             study_history = StudyHistory.objects.create(
                 study_history="Initial Study History",
                 study_days_count="1",
                 record_details_change_history="Initial History Details"
             )
-
+ 
             memo_record = serializer.save(author=self.request.user, study_plan_id=study_plan, study_history_id=study_history, study_scope_id = study_scope);
         else:
             print(serializer.errors)
@@ -357,9 +377,21 @@ class SubjectTypeList(generics.ListCreateAPIView):
     queryset = SubjectType.objects.all()
     serializer_class = SubjectTypeSerializer
 
-    def list(self, request, *args, **kwargs):
-        queryset = self.get_queryset().values('id', 'type', 'category')
-        return Response(queryset)
+    # def list(self, request, *args, **kwargs):
+    #     queryset = self.get_queryset().values('id', 'type', 'category')
+    #     return Response(queryset)
+    
+    def get_queryset(self):
+        user = self.request.user
+        return SubjectType.objects.filter(author=user)
+
+# class SubjectTypeList(generics.ListCreateAPIView):
+#     serializer_class = SubjectTypeSerializer
+#     permission_classes = [IsAuthenticated]
+
+#     def list(self, request, *args, **kwargs):
+#         queryset = SubjectType.objects.filter(author=request.user)
+#         return Response(queryset)    
 
 class SubjectTypeCreate(generics.ListCreateAPIView):
     serializer_class = SubjectTypeSerializer
@@ -441,11 +473,6 @@ class StudyScopeUpdate(generics.UpdateAPIView):
             instance = serializer.instance
             updated_study_scope = self.request.data
             instance.study_scope = updated_study_scope
-            # updated_study_scope = self.request.headers.get('Updated Study Scope', 'N/A')
-
-            print("--------------------------- instance ===> " + str(instance.study_scope))
-            print("--------------------------- instance ===> " + str(updated_study_scope))
-
             instance.save()
         else:
             print(serializer.errors)

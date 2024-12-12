@@ -4976,3 +4976,257 @@ Traceback (most recent call last):
     print("--------------------------- study_scope_id ===> " + study_scope_id)
 TypeError: must be str, not int
 "PUT /api/study_scope/update/1/ HTTP/1.1" 500 105292
+Internal Server Error: /api/subject_types_list/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/generics.py", line 243, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 382, in list
+    queryset = self.get_queryset().values('id', 'type', 'category')
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/generics.py", line 70, in get_queryset
+    % self.__class__.__name__
+AssertionError: 'SubjectTypeList' should either include a `queryset` attribute, or override the `get_queryset()` method.
+"GET /api/subject_types_list/ HTTP/1.1" 500 102790
+Internal Server Error: /api/subject_types_list/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    response = response.render()
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/renderers.py", line 102, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'SubjectType' is not JSON serializable
+"GET /api/subject_types_list/ HTTP/1.1" 500 103555
+Internal Server Error: /api/subject_types_list/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    response = response.render()
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/renderers.py", line 102, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'SubjectType' is not JSON serializable
+"GET /api/subject_types_list/ HTTP/1.1" 500 103555
+Internal Server Error: /api/subject_types_list/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    response = response.render()
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/renderers.py", line 102, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'SubjectType' is not JSON serializable
+"GET /api/subject_types_list/ HTTP/1.1" 500 103555
+Internal Server Error: /api/subject_types_list/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    response = response.render()
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/renderers.py", line 102, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'SubjectType' is not JSON serializable
+"GET /api/subject_types_list/ HTTP/1.1" 500 103555
+Internal Server Error: /api/subject_types_list/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    response = response.render()
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/renderers.py", line 102, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'SubjectType' is not JSON serializable
+"GET /api/subject_types_list/ HTTP/1.1" 500 104039
+Internal Server Error: /api/subject_types_list/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 204, in _get_response
+    response = response.render()
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/template/response.py", line 105, in render
+    self.content = self.rendered_content
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/renderers.py", line 102, in render
+    allow_nan=not self.strict, separators=separators
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'SubjectType' is not JSON serializable
+"GET /api/subject_types_list/ HTTP/1.1" 500 104039
+Internal Server Error: /api/subject_types_list/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/generics.py", line 243, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+TypeError: get_queryset() missing 1 required positional argument: 'request'
+"GET /api/subject_types_list/ HTTP/1.1" 500 98252
+Internal Server Error: /api/subject_types_list/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/generics.py", line 243, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+TypeError: get_queryset() missing 1 required positional argument: 'request'
+"GET /api/subject_types_list/ HTTP/1.1" 500 98252
+Internal Server Error: /api/subject_types_list/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/generics.py", line 243, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+TypeError: get_queryset() missing 1 required positional argument: 'request'
+"GET /api/subject_types_list/ HTTP/1.1" 500 98252
