@@ -58,6 +58,7 @@ class MemoRecordSerializer(serializers.ModelSerializer):
             "subject_type",
             "importance_level",
             "in_half_year_repetition",
+            "question",
             "record_details",
             "record_neighbor",
             "next_study_time",

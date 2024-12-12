@@ -284,7 +284,7 @@ class MemoRecordList(generics.ListCreateAPIView):
         memo_records = MemoRecord.objects.filter(author=user).select_related('study_plan_id', 'study_history_id')
         memo_records = list(memo_records)             
 
-        print("------------------------------------------------------------ total records " + str(len(memo_records))); 
+        # print("------------------------------------------------------------ total records " + str(len(memo_records))); 
 
         for record in memo_records[:]:
             if record.study_history_id: 
@@ -294,7 +294,7 @@ class MemoRecordList(generics.ListCreateAPIView):
                 last_five_lines = study_history_lines[-7:]  
                 check_study_history_and_update_next_study_time(record, last_five_lines, study_history_last_updated_time)
                 
-                print( "------------- record.next_study_time - timezone.now() = " + str(record.next_study_time - timezone.now()) ); 
+                # print( "------------- record.next_study_time - timezone.now() = " + str(record.next_study_time - timezone.now()) ); 
 
                 if record.next_study_time > timezone.now(): 
                     memo_records.remove(record)
@@ -424,7 +424,9 @@ class MemoRecordUpdateStudyHistory(generics.UpdateAPIView):
         if serializer.is_valid():
  
             instance = serializer.instance
-            remember_status = self.request.headers.get('Remember-Status', 'default_status')
+            
+            remember_status = self.request.data.get('study_status', None)
+
             current_date = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
             study_history_instance = instance.study_history_id
             
