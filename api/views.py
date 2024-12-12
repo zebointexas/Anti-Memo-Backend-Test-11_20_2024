@@ -162,14 +162,14 @@ def update_study_plan(memo_record):
             return False
     memo_record.in_half_year_repetition = True
              
-def check_study_history_and_update_next_study_time(memo_record, last_five_lines, study_history_last_updated_time):
+def check_study_history_and_update_next_study_time(memo_record, last_seven_lines, study_history_last_updated_time):
     
     remember_count = 0; 
 
-    if not last_five_lines: 
+    if not last_seven_lines: 
         return
 
-    for eachLine in reversed(last_five_lines):
+    for eachLine in reversed(last_seven_lines):
         if eachLine.strip():                 
             last_word = get_last_word(eachLine)
             if last_word == 'Remember':
@@ -237,70 +237,116 @@ class CreateUserView(generics.CreateAPIView):
 ####################################################################################
 
 
+# # MemoRecord List and Create View
+# class MemoRecordList(generics.ListCreateAPIView):
+#     serializer_class = MemoRecordSerializer
+#     permission_classes = [IsAuthenticated]
+
+#     # subjects = [
+#     #     {"type": "Java", "category": "SDE_Interview", "author_id": 1},
+#     #     {"type": "Python", "category": "SDE_Interview", "author_id": 1},
+#     #     {"type": "Algo", "category": "SDE_Interview", "author_id": 1},
+#     #     {"type": "System_Design", "category": "SDE_Interview", "author_id": 1},
+#     #     {"type": "OOD", "category": "SDE_Interview", "author_id": 1},
+#     #     {"type": "BQ", "category": "SDE_Interview", "author_id": 1},
+#     #     {"type": "Linux", "category": "SRE", "author_id": 1},
+#     #     {"type": "Network", "category": "SRE", "author_id": 1},
+#     #     {"type": "General_IT", "category": "IT", "author_id": 1},
+#     #     {"type": "French", "category": "Language", "author_id": 1},
+#     #     {"type": "English", "category": "Language", "author_id": 1},
+#     #     {"type": "Friends_Info", "category": "Social", "author_id": 1},
+#     #     {"type": "Math", "category": "Mathematics", "author_id": 1},
+#     #     {"type": "Machine_Learning", "category": "AI", "author_id": 1}
+#     # ]
+
+#     # # 插入数据
+#     # for subject in subjects:
+#     #     # 获取 `author` 实例，确保用户存在
+#     #     try:
+#     #         author = User.objects.get(id=subject["author_id"])
+#     #     except User.DoesNotExist:
+#     #         print(f"User with ID {subject['author_id']} does not exist. Skipping {subject['type']}.")
+#     #         continue
+
+#     #     # 使用 `get_or_create` 避免重复插入
+#     #     subject_type, created = SubjectType.objects.get_or_create(
+#     #         type=subject["type"],
+#     #         category=subject["category"],
+#     #         author=author  # 绑定作者
+#     #     )
+#     #     if created:
+#     #         print(f"Created: {subject['type']}")
+#     #     else:
+#     #         print(f"Already exists: {subject['type']}")
+
+#     def get_queryset(self):
+#         user = self.request.user
+#         memo_records = MemoRecord.objects.filter(author=user).select_related('study_plan_id', 'study_history_id')
+#         memo_records = list(memo_records)             
+
+#         # print("------------------------------------------------------------ total records " + str(len(memo_records))); 
+
+#         for record in memo_records[:]:
+#             if record.study_history_id: 
+#                 study_history_content = record.study_history_id.study_history   
+#                 study_history_last_updated_time = record.study_history_id.last_updated
+#                 study_history_lines = study_history_content.splitlines()
+#                 last_five_lines = study_history_lines[-7:]  
+#                 check_study_history_and_update_next_study_time(record, last_five_lines, study_history_last_updated_time)
+                
+#                 # print( "------------- record.next_study_time - timezone.now() = " + str(record.next_study_time - timezone.now()) ); 
+
+#                 if record.next_study_time > timezone.now(): 
+#                     memo_records.remove(record)
+        
+#         return memo_records
+ 
+
 # MemoRecord List and Create View
 class MemoRecordList(generics.ListCreateAPIView):
     serializer_class = MemoRecordSerializer
     permission_classes = [IsAuthenticated]
-
-    # subjects = [
-    #     {"type": "Java", "category": "SDE_Interview", "author_id": 1},
-    #     {"type": "Python", "category": "SDE_Interview", "author_id": 1},
-    #     {"type": "Algo", "category": "SDE_Interview", "author_id": 1},
-    #     {"type": "System_Design", "category": "SDE_Interview", "author_id": 1},
-    #     {"type": "OOD", "category": "SDE_Interview", "author_id": 1},
-    #     {"type": "BQ", "category": "SDE_Interview", "author_id": 1},
-    #     {"type": "Linux", "category": "SRE", "author_id": 1},
-    #     {"type": "Network", "category": "SRE", "author_id": 1},
-    #     {"type": "General_IT", "category": "IT", "author_id": 1},
-    #     {"type": "French", "category": "Language", "author_id": 1},
-    #     {"type": "English", "category": "Language", "author_id": 1},
-    #     {"type": "Friends_Info", "category": "Social", "author_id": 1},
-    #     {"type": "Math", "category": "Mathematics", "author_id": 1},
-    #     {"type": "Machine_Learning", "category": "AI", "author_id": 1}
-    # ]
-
-    # # 插入数据
-    # for subject in subjects:
-    #     # 获取 `author` 实例，确保用户存在
-    #     try:
-    #         author = User.objects.get(id=subject["author_id"])
-    #     except User.DoesNotExist:
-    #         print(f"User with ID {subject['author_id']} does not exist. Skipping {subject['type']}.")
-    #         continue
-
-    #     # 使用 `get_or_create` 避免重复插入
-    #     subject_type, created = SubjectType.objects.get_or_create(
-    #         type=subject["type"],
-    #         category=subject["category"],
-    #         author=author  # 绑定作者
-    #     )
-    #     if created:
-    #         print(f"Created: {subject['type']}")
-    #     else:
-    #         print(f"Already exists: {subject['type']}")
-
+ 
     def get_queryset(self):
         user = self.request.user
-        memo_records = MemoRecord.objects.filter(author=user).select_related('study_plan_id', 'study_history_id')
-        memo_records = list(memo_records)             
 
-        # print("------------------------------------------------------------ total records " + str(len(memo_records))); 
+        # 获取用户的 study_scope 数据
+        try:
+            study_scope = StudyScope.objects.get(author=user)
+            study_scope_data = study_scope.study_scope  # 获取 study_scope 的 JSON 数据
+        except StudyScope.DoesNotExist:
+            # 如果用户没有对应的 StudyScope，返回空列表或默认行为
+            return MemoRecord.objects.none()
+
+        # 获取 JSON 数据中的 subject_types 和 categories
+        subject_types = study_scope_data.get('subject_types', [])
+        categories = study_scope_data.get('categories', [])
+ 
+        memo_records = MemoRecord.objects.filter(author=user).select_related('study_plan_id', 'study_history_id', 'study_scope_id')
+ 
+        if subject_types:
+            memo_records = memo_records.filter(subject_type__in=subject_types)
+        if categories:
+
+            subject_types = SubjectType.objects.filter(category__in=categories, author=user).values_list('type', flat=True)
+
+            memo_records = memo_records.filter(subject_type__in=list(subject_types))
+  
+        memo_records = list(memo_records)  
 
         for record in memo_records[:]:
             if record.study_history_id: 
                 study_history_content = record.study_history_id.study_history   
                 study_history_last_updated_time = record.study_history_id.last_updated
                 study_history_lines = study_history_content.splitlines()
-                last_five_lines = study_history_lines[-7:]  
-                check_study_history_and_update_next_study_time(record, last_five_lines, study_history_last_updated_time)
-                
-                # print( "------------- record.next_study_time - timezone.now() = " + str(record.next_study_time - timezone.now()) ); 
-
+                last_seven_lines = study_history_lines[-7:]  
+                check_study_history_and_update_next_study_time(record, last_seven_lines, study_history_last_updated_time)
+                 
                 if record.next_study_time > timezone.now(): 
                     memo_records.remove(record)
         
         return memo_records
- 
+
 class MemoRecordCreate(generics.ListCreateAPIView):
     serializer_class = MemoRecordSerializer
     permission_classes = [IsAuthenticated]
