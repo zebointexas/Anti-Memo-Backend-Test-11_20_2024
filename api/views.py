@@ -14,6 +14,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.conf import settings
 from django.http import JsonResponse
+from django.db.models import Q
+from django.db.models import Case, When, Value, IntegerField
 
 ###########################################################################
 ########################################################################### Methods 
@@ -524,3 +526,28 @@ class StudyScopeUpdate(generics.UpdateAPIView):
             instance.save()
         else:
             print(serializer.errors)
+
+class MemoRecordSearch(generics.ListCreateAPIView):
+    serializer_class = MemoRecordSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        search_query = request.GET.get('query', '')
+
+        # 使用 Q 对象进行 OR 查询，支持模糊搜索
+        memo_records = MemoRecord.objects.filter(
+            Q(question__icontains=search_query) | Q(record_details__icontains=search_query)
+        )
+
+        # 使用 Case 和 When 对符合 question 条件的记录进行排序
+        memo_records = memo_records.annotate(
+            is_question_match=Case(
+                                    When(question__icontains=search_query, then=Value(1)),
+                                    default=Value(0),
+                                    output_field=IntegerField(),
+            )
+        ).order_by('-is_question_match')  
+
+        # 序列化查询结果
+        serializer = MemoRecordSerializer(memo_records, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)

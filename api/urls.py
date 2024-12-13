@@ -9,6 +9,7 @@ urlpatterns = [
     path("memo_records/delete/<int:pk>/", views.MemoRecordDelete.as_view(), name="delete-memo-record"),
     path("memo_records/update/study-history/<int:pk>/", views.MemoRecordUpdateStudyHistory.as_view(), name="update-memo-record"),
     path("memo_records/update/record-details/<int:pk>/", views.MemoRecordUpdateRecordDetails.as_view(), name="update-record-details"),
+    path("memo_records/search/", views.MemoRecordSearch.as_view(), name="search-memo-record"),
     path("subject_types_list/", views.SubjectTypeList.as_view(), name="subject-types-list"),
     path("subject_types/create/", views.SubjectTypeCreate.as_view(), name="create-subject-type"),
     path("subject_types/delete/<int:pk>/", views.SubjectTypeDelete.as_view(), name="delete-subject-type"),
