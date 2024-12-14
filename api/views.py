@@ -30,104 +30,130 @@ def get_last_word(eachLine):
         return None
     return words[-1]
 
-def roll_back_check_point(updated_day, roll_back_count, soft_reset_date, next_study_day, check_points):
+def roll_back_check_point(revised_day, roll_back_count, memo_record): # 这里的逻辑很绕
     
-    index = settings.CHECK_POINTS.index(updated_day)
-    soft_reset_date = timezone.now() - settings.CHECK_POINTS[index - roll_back_count]
-    next_study_day = soft_reset_date + settings.CHECK_POINTS[index - roll_back_count + 1]
-     
-def soft_reset(soft_reset_date, next_study_time): 
-    soft_reset_date = timezone.now().replace(hour=0, minute=0, second=0, microsecond=0) + timedelta(days=1) 
-    next_study_time = soft_reset_date
+    index = settings.CHECK_POINTS.index(int(revised_day))  # 拿到 revised_day (变成True) 的 index
 
-def next_study_time_normal_update(soft_reset_date, updated_day, memo_record): 
-    index = settings.CHECK_POINTS.index(updated_day)
+    day_after_rollback = settings.CHECK_POINTS[index - roll_back_count] # rolled_back_day，等于，重新算之后，今天是day几
+
+    print("day_after_rollback = " + str(day_after_rollback))
+
+    # below is updating "soft_reset_date" date
+    study_plan_instance = memo_record.study_plan_id
+
+    study_plan_instance.soft_reset_date = timezone.now().replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(days=day_after_rollback - 1)
+    
+    study_plan_instance.save()
+
+    print("study_plan_instance.soft_reset_date  after udpate = " + str(study_plan_instance.soft_reset_date))
+
+    memo_record.next_study_time = study_plan_instance.soft_reset_date + timedelta(days=( settings.CHECK_POINTS[index - roll_back_count + 1] - 1 ))
+
+    memo_record.save()
+
+    print("----> memo_record.saved")
+     
+def soft_reset(memo_record): 
+    
+    study_plan_instance = memo_record.study_plan_id
+    study_plan_instance.soft_reset_date = timezone.now().replace(hour=0, minute=0, second=0, microsecond=0) + timedelta(days=1)  # put reset day to tomorrow, and start from tomorrow
+    study_plan_instance.save()
+    memo_record.next_study_time = study_plan_instance.soft_reset_date
+    memo_record.save()
+
+def next_study_time_normal_update(soft_reset_date, revised_day, memo_record): 
+
+    index = settings.CHECK_POINTS.index(int(revised_day))
+
     if memo_record.in_half_year_repetition or index + 1 == len(settings.CHECK_POINTS): 
        memo_record.in_half_year_repetition = True
-       next_study_time = memo_record.next_study_time + timedelta(days=182) 
+       memo_record.next_study_time = memo_record.next_study_time + timedelta(days=182) 
     else: 
-       next_study_time = soft_reset_date + timedelta(days=(settings.CHECK_POINTS[index + 1]))
+       memo_record.next_study_time = soft_reset_date + timedelta( days=(settings.CHECK_POINTS[index + 1] - 1) )
+       memo_record.save()
 
 ###################### days handler 
 ######################
+ 
+def handle_day_1(revised_day, gap_days, memo_record): 
+    soft_reset(memo_record)     
 
-def handle_day_1(updated_day, soft_reset_date, check_points, gap_days, memo_record): 
-    soft_reset(soft_reset_date, memo_record.next_study_time)     
-
-def handle_day_2_or_4(updated_day, soft_reset_date, check_points, gap_days, memo_record):
+def handle_day_2_or_4(revised_day, gap_days, memo_record):
     if gap_days == 1: 
-       roll_back_check_point(updated_day, 1, soft_reset_date, memo_record.next_study_time, check_points)
+       roll_back_check_point(revised_day, 1, memo_record)
     else: 
-       soft_reset(soft_reset_date, memo_record.next_study_time)   
+       soft_reset(memo_record)   
 
-def handle_day_8_or_15(updated_day, soft_reset_date, check_points, gap_days, memo_record):
+def handle_day_8_or_15(revised_day, gap_days, memo_record):
     if gap_days == 1: 
-       roll_back_check_point(updated_day, 1, soft_reset_date, memo_record.next_study_time, check_points)
+       roll_back_check_point(revised_day, 1, memo_record)
     if gap_days in (2,3): 
-       roll_back_check_point(updated_day, 2, soft_reset_date, memo_record.next_study_time, check_points)       
+       roll_back_check_point(revised_day, 2, memo_record)       
     else: 
-       soft_reset(soft_reset_date, memo_record.next_study_time)   
+       soft_reset(memo_record)   
 
-def handle_day_30_or_60(updated_day, soft_reset_date, check_points, gap_days, memo_record):
+def handle_day_30_or_60(revised_day, gap_days, memo_record):
     if gap_days in (1,2,3): 
-       roll_back_check_point(updated_day, 1, soft_reset_date, memo_record.next_study_time, check_points)
+       roll_back_check_point(revised_day, 1, memo_record)
     if gap_days in (4,5,6,7,8): 
-       roll_back_check_point(updated_day, 2, soft_reset_date, memo_record.next_study_time, check_points)       
+       roll_back_check_point(revised_day, 2, memo_record)       
     if gap_days in (9,10,11,12): 
-       roll_back_check_point(updated_day, 3, soft_reset_date, memo_record.next_study_time, check_points)       
+       roll_back_check_point(revised_day, 3, memo_record)       
     if gap_days in (13,14,15,16): 
-       roll_back_check_point(updated_day, 4, soft_reset_date, memo_record.next_study_time, check_points)              
+       roll_back_check_point(revised_day, 4, memo_record)              
     else: 
-       soft_reset(soft_reset_date, memo_record.next_study_time)    
+       soft_reset(memo_record)    
 
-def handle_day_90_or_120_or_180(updated_day, soft_reset_date, check_points, gap_days, memo_record):   
+def handle_day_90_or_120_or_180(revised_day, gap_days, memo_record):   
     if 1 <= gap_days <= 4: 
-       roll_back_check_point(updated_day, 1, soft_reset_date, memo_record.next_study_time, check_points)
+       roll_back_check_point(revised_day, 1, memo_record)
     if 5 <= gap_days <= 10: 
-       roll_back_check_point(updated_day, 2, soft_reset_date, memo_record.next_study_time, check_points)       
+       roll_back_check_point(revised_day, 2, memo_record)       
     if 11 <= gap_days <= 16: 
-       roll_back_check_point(updated_day, 3, soft_reset_date, memo_record.next_study_time, check_points)       
+       roll_back_check_point(revised_day, 3, memo_record)       
     if 16 <= gap_days <= 22:  
-       roll_back_check_point(updated_day, 5, soft_reset_date, memo_record.next_study_time, check_points)              
+       roll_back_check_point(revised_day, 5, memo_record)              
     else: 
-       soft_reset(soft_reset_date, memo_record.next_study_time)      
+       soft_reset(memo_record)      
 
-def handle_day_240_or_300_or_420(updated_day, soft_reset_date, check_points, gap_days, memo_record):  
+def handle_day_240_or_300_or_420(revised_day, gap_days, memo_record):  
     if 1 <= gap_days <= 5: 
-       roll_back_check_point(updated_day, 1, soft_reset_date, memo_record.next_study_time, check_points)
+       roll_back_check_point(revised_day, 1, memo_record)
     if 6 <= gap_days <= 13: 
-       roll_back_check_point(updated_day, 2, soft_reset_date, memo_record.next_study_time, check_points)       
+       roll_back_check_point(revised_day, 2, memo_record)       
     if 14 <= gap_days <= 21: 
-       roll_back_check_point(updated_day, 3, soft_reset_date, memo_record.next_study_time, check_points)       
+       roll_back_check_point(revised_day, 3, memo_record)       
     if 22 <= gap_days <= 36:  
-       roll_back_check_point(updated_day, 5, soft_reset_date, memo_record.next_study_time, check_points)              
+       roll_back_check_point(revised_day, 5, memo_record)              
     else: 
-       soft_reset(soft_reset_date, memo_record.next_study_time)   
+       soft_reset(memo_record)   
 
-def handle_day_rest_of_all(updated_day, soft_reset_date, check_points, gap_days, memo_record):  
+def handle_day_rest_of_all(revised_day, gap_days, memo_record):  
     if 1 <= gap_days <= 15: 
-       roll_back_check_point(updated_day, 1, soft_reset_date, memo_record.next_study_time, check_points)
+       roll_back_check_point(revised_day, 1, memo_record)
     if 16 <= gap_days <= 30: 
-       roll_back_check_point(updated_day, 2, soft_reset_date, memo_record.next_study_time, check_points)       
+       roll_back_check_point(revised_day, 2, memo_record)       
     if 31 <= gap_days <= 45: 
-       roll_back_check_point(updated_day, 3, soft_reset_date, memo_record.next_study_time, check_points)       
+       roll_back_check_point(revised_day, 3, memo_record)       
     if 46 <= gap_days <= 60:  
-       roll_back_check_point(updated_day, 5, soft_reset_date, memo_record.next_study_time, check_points)              
+       roll_back_check_point(revised_day, 5, memo_record)              
     else: 
-       soft_reset(soft_reset_date, memo_record.next_study_time)   
+       soft_reset(memo_record)   
 
-def update_next_study_time_for_study_plan(memo_record, updated_day): 
+def update_next_study_time_for_study_plan(memo_record, revised_day): 
     if memo_record.in_half_year_repetition == True: 
         memo_record.next_study_time = memo_record.study_history.last_updated + relativedelta(months=6)
     else: 
-        soft_reset_date = memo_record.study_plan.soft_reset_date
-        expected_day = (timezone.now() - soft_reset_date).days + 1 
+        soft_reset_date = memo_record.study_plan_id.soft_reset_date
 
-        check_points = memo_record.study_history.check_points
-        gap_days = (updated_day - expected_day).days
+        today_day = (timezone.now() - soft_reset_date).days + 1 
 
-        if gap_days == 0: 
-           next_study_time_normal_update(soft_reset_date, updated_day, memo_record)
+        gap = today_day - int(revised_day)
+ 
+        if gap == 0: 
+           next_study_time_normal_update(soft_reset_date, revised_day, memo_record)
+
+        print("-------------------------> gap " + str(gap))
 
         key_handler_map = {
             "1": handle_day_1,
@@ -150,17 +176,21 @@ def update_next_study_time_for_study_plan(memo_record, updated_day):
             "1200": handle_day_rest_of_all,
         }
 
-        handler = key_handler_map.get(expected_day)
-        handler(updated_day, soft_reset_date, check_points, gap_days, memo_record)
+        print("-------------------> revised_day = " + str(revised_day))
+
+        handler = key_handler_map.get(revised_day)
+
+        handler(revised_day, gap, memo_record)
          
 def update_study_plan(memo_record):
-    check_points = memo_record.study_plan.check_points
-    for updated_day, value in check_points.items():
+    check_points = memo_record.study_plan_id.check_points
+    for revised_day, value in check_points.items():
         if value == "false":
-            check_points[updated_day] = "true"
-            memo_record.study_plan.check_points = check_points
-            memo_record.study_plan.save()
-            update_next_study_time_for_study_plan(memo_record, updated_day)
+            check_points[revised_day] = "true"
+            memo_record.study_plan_id.check_points = check_points
+            memo_record.study_plan_id.save()
+            print("-----------> revised_day = " + revised_day)
+            update_next_study_time_for_study_plan(memo_record, revised_day)
             return False
     memo_record.in_half_year_repetition = True
              
@@ -184,20 +214,27 @@ def check_study_history_and_update_next_study_time(memo_record, last_seven_lines
     if remember_count == 1: 
        wait_time = 5
     elif remember_count == 2: 
-       wait_time = 15
+       wait_time = 5
     elif remember_count == 3:    
-       wait_time = 30
+       wait_time = 5
     elif remember_count == 4:  
-       wait_time = 30  
+       wait_time = 5  
     elif remember_count == 5:  
-      wait_time = 30
+      wait_time = 5
     elif remember_count == 6:  
-      wait_time = 60 
+      wait_time = 5 
     elif remember_count == 7:  
-       update_study_plan(memo_record)
+        current_date = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
+        study_history_instance = memo_record.study_history_id
+        # study_history_instance.study_history = f"{study_history_instance.study_history}\nReviewed on: {current_date}    |    " + "Reset after 7 times Remember"
+        study_history_instance.save()
+        update_study_plan(memo_record)
 
-    memo_record.next_study_time = study_history_last_updated_time + timedelta(minutes=wait_time)
+    if remember_count != 7: 
+       memo_record.next_study_time = study_history_last_updated_time + timedelta(seconds=wait_time)
     
+    print("======================================================> count for + " + str(remember_count))
+
 ###########################################################################
 ########################################################################### classes 
 ########################################################################### 
@@ -237,73 +274,7 @@ class CreateUserView(generics.CreateAPIView):
 #################################################################################### MemoRecords
 ####################################################################################
 ####################################################################################
-
-
-# # MemoRecord List and Create View
-# class MemoRecordList(generics.ListCreateAPIView):
-#     serializer_class = MemoRecordSerializer
-#     permission_classes = [IsAuthenticated]
-
-#     # subjects = [
-#     #     {"type": "Java", "category": "SDE_Interview", "author_id": 1},
-#     #     {"type": "Python", "category": "SDE_Interview", "author_id": 1},
-#     #     {"type": "Algo", "category": "SDE_Interview", "author_id": 1},
-#     #     {"type": "System_Design", "category": "SDE_Interview", "author_id": 1},
-#     #     {"type": "OOD", "category": "SDE_Interview", "author_id": 1},
-#     #     {"type": "BQ", "category": "SDE_Interview", "author_id": 1},
-#     #     {"type": "Linux", "category": "SRE", "author_id": 1},
-#     #     {"type": "Network", "category": "SRE", "author_id": 1},
-#     #     {"type": "General_IT", "category": "IT", "author_id": 1},
-#     #     {"type": "French", "category": "Language", "author_id": 1},
-#     #     {"type": "English", "category": "Language", "author_id": 1},
-#     #     {"type": "Friends_Info", "category": "Social", "author_id": 1},
-#     #     {"type": "Math", "category": "Mathematics", "author_id": 1},
-#     #     {"type": "Machine_Learning", "category": "AI", "author_id": 1}
-#     # ]
-
-#     # # 插入数据
-#     # for subject in subjects:
-#     #     # 获取 `author` 实例，确保用户存在
-#     #     try:
-#     #         author = User.objects.get(id=subject["author_id"])
-#     #     except User.DoesNotExist:
-#     #         print(f"User with ID {subject['author_id']} does not exist. Skipping {subject['type']}.")
-#     #         continue
-
-#     #     # 使用 `get_or_create` 避免重复插入
-#     #     subject_type, created = SubjectType.objects.get_or_create(
-#     #         type=subject["type"],
-#     #         category=subject["category"],
-#     #         author=author  # 绑定作者
-#     #     )
-#     #     if created:
-#     #         print(f"Created: {subject['type']}")
-#     #     else:
-#     #         print(f"Already exists: {subject['type']}")
-
-#     def get_queryset(self):
-#         user = self.request.user
-#         memo_records = MemoRecord.objects.filter(author=user).select_related('study_plan_id', 'study_history_id')
-#         memo_records = list(memo_records)             
-
-#         # print("------------------------------------------------------------ total records " + str(len(memo_records))); 
-
-#         for record in memo_records[:]:
-#             if record.study_history_id: 
-#                 study_history_content = record.study_history_id.study_history   
-#                 study_history_last_updated_time = record.study_history_id.last_updated
-#                 study_history_lines = study_history_content.splitlines()
-#                 last_five_lines = study_history_lines[-7:]  
-#                 check_study_history_and_update_next_study_time(record, last_five_lines, study_history_last_updated_time)
-                
-#                 # print( "------------- record.next_study_time - timezone.now() = " + str(record.next_study_time - timezone.now()) ); 
-
-#                 if record.next_study_time > timezone.now(): 
-#                     memo_records.remove(record)
-        
-#         return memo_records
  
-
 # MemoRecord List and Create View
 class MemoRecordList(generics.ListCreateAPIView):
     serializer_class = MemoRecordSerializer
@@ -324,29 +295,28 @@ class MemoRecordList(generics.ListCreateAPIView):
         subject_types = study_scope_data.get('subject_types', [])
         categories = study_scope_data.get('categories', [])
  
-        memo_records = MemoRecord.objects.filter(author=user).select_related('study_plan_id', 'study_history_id', 'study_scope_id')
- 
+        memo_records = MemoRecord.objects.filter(author=user, next_study_time__lte=timezone.now()).select_related('study_plan_id', 'study_history_id', 'study_scope_id')
+
         if subject_types:
             memo_records = memo_records.filter(subject_type__in=subject_types)
         if categories:
-
             subject_types = SubjectType.objects.filter(category__in=categories, author=user).values_list('type', flat=True)
-
             memo_records = memo_records.filter(subject_type__in=list(subject_types))
   
         memo_records = list(memo_records)  
 
         for record in memo_records[:]:
+ 
+            if record.next_study_time > timezone.now(): 
+                memo_records.remove(record)
+
             if record.study_history_id: 
                 study_history_content = record.study_history_id.study_history   
                 study_history_last_updated_time = record.study_history_id.last_updated
                 study_history_lines = study_history_content.splitlines()
                 last_seven_lines = study_history_lines[-7:]  
                 check_study_history_and_update_next_study_time(record, last_seven_lines, study_history_last_updated_time)
-                 
-                if record.next_study_time > timezone.now(): 
-                    memo_records.remove(record)
-        
+
         return memo_records
 
 class MemoRecordCreate(generics.ListCreateAPIView):
@@ -526,7 +496,7 @@ class StudyScopeUpdate(generics.UpdateAPIView):
             instance.save()
         else:
             print(serializer.errors)
-
+ 
 class MemoRecordSearch(generics.ListCreateAPIView):
     serializer_class = MemoRecordSerializer
     permission_classes = [IsAuthenticated]
@@ -534,20 +504,19 @@ class MemoRecordSearch(generics.ListCreateAPIView):
     def get(self, request):
         search_query = request.GET.get('query', '')
 
-        # 使用 Q 对象进行 OR 查询，支持模糊搜索
+        user = request.user
+ 
         memo_records = MemoRecord.objects.filter(
-            Q(question__icontains=search_query) | Q(record_details__icontains=search_query)
+            Q(author=user) & (Q(question__icontains=search_query) | Q(record_details__icontains=search_query))
         )
 
-        # 使用 Case 和 When 对符合 question 条件的记录进行排序
         memo_records = memo_records.annotate(
             is_question_match=Case(
-                                    When(question__icontains=search_query, then=Value(1)),
-                                    default=Value(0),
-                                    output_field=IntegerField(),
+                When(question__icontains=search_query, then=Value(1)),
+                default=Value(0),
+                output_field=IntegerField(),
             )
-        ).order_by('-is_question_match')  
+        ).order_by('-is_question_match')
 
-        # 序列化查询结果
         serializer = MemoRecordSerializer(memo_records, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
