@@ -15,4 +15,9 @@ urlpatterns = [
     path("subject_types/delete/<int:pk>/", views.SubjectTypeDelete.as_view(), name="delete-subject-type"),
     path("category_list/", views.SubjectTypeList.as_view(), name="subject-types-list"),
     path("study_scope/update/<int:pk>/", views.StudyScopeUpdate.as_view(), name="study-scope-update"),
+    path("one_time_events_list/", views.OneTimeEventList.as_view(), name="fetch-one-time-events"),
+    path("one_time_event/create/", views.OneTimeEventCreate.as_view(), name="create-one-time-event"),
+    path("one_time_event/update/<int:pk>/", views.OneTimeEventUpdate.as_view(), name="update-one-time-event"),
+    path("one_time_event/delete/<int:pk>/", views.OneTimeEventDelete.as_view(), name="delete-one-time-event"),
+
 ]

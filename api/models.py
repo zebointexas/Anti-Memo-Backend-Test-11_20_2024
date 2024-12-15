@@ -31,6 +31,22 @@ def get_default_study_scope():
         "category": "all"
     }
 
+class OneTimeEvent(models.Model):
+    event_name = models.CharField(max_length=50)
+    event_details = models.TextField()
+    start_date = models.DateTimeField()
+    is_high_importance = models.BooleanField(default=False)
+    is_done = models.BooleanField(default=False)
+    event_history = models.TextField(default="N/A")
+    created_at = models.DateTimeField(auto_now_add=True)  
+    author = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE, 
+        related_name="one_time_event", 
+        default=1  
+    )
+    last_updated = models.DateTimeField(auto_now=True) 
+
 class StudyScope(models.Model):
     study_scope = models.JSONField(default=get_default_study_scope)
     author = models.ForeignKey(
@@ -114,11 +130,3 @@ class MemoRecord(models.Model):
 
     def __str__(self):
         return self.record_details
-
-# OneTimeEvent Model
-class OneTimeEvent(models.Model):
-    event_Id = models.SmallIntegerField()
-    event_details = models.TextField()
-    start_date = models.DateTimeField()
-    retain_length = models.SmallIntegerField()
-    is_done = models.BooleanField()

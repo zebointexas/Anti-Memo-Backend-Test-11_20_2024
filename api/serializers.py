@@ -2,6 +2,36 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import *
 
+class OneTimeEventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OneTimeEvent
+        fields = [
+            "id", 
+            "event_name", 
+            "event_details", 
+            "start_date", 
+            "is_high_importance", 
+            "is_done", 
+            "event_history", 
+            "created_at", 
+            "author", 
+            "last_updated"
+        ]
+        extra_kwargs = {
+            "author": {"read_only": True},  # 作者由后端自动设置
+            "created_at": {"read_only": True},  # 自动生成
+            "last_updated": {"read_only": True},  # 自动生成
+        }
+
+    # def create(self, validated_data):
+    #     return OneTimeEvent.objects.create(**validated_data)
+
+    # def update(self, instance, validated_data):
+    #     for field, value in validated_data.items():
+    #         setattr(instance, field, value)
+    #     instance.save()
+    #     return instance
+
 class StudyScopeSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudyScope
@@ -90,16 +120,3 @@ class MemoRecordSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Study History is required")
         
         return MemoRecord.objects.create(**validated_data)
-
-class OneTimeEventSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = OneTimeEvent
-        fields = [
-            "id",
-            "event_details",
-            "start_date",
-            "retain_length",
-            "is_done",
-        ]
-
-

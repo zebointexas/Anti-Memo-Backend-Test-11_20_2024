@@ -226,18 +226,68 @@ def check_study_history_and_update_next_study_time(memo_record, last_seven_lines
     elif remember_count == 7:  
         current_date = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
         study_history_instance = memo_record.study_history_id
-        # study_history_instance.study_history = f"{study_history_instance.study_history}\nReviewed on: {current_date}    |    " + "Reset after 7 times Remember"
+        study_history_instance.study_history = f"{study_history_instance.study_history}\nReviewed on: {current_date}    |    " + "Reset after 7 times Remember"
         study_history_instance.save()
         update_study_plan(memo_record)
 
     if remember_count != 7: 
        memo_record.next_study_time = study_history_last_updated_time + timedelta(seconds=wait_time)
+       memo_record.save()
     
     print("======================================================> count for + " + str(remember_count))
 
 ###########################################################################
 ########################################################################### classes 
 ########################################################################### 
+
+class OneTimeEventList(generics.ListCreateAPIView):
+    serializer_class = OneTimeEventSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return OneTimeEvent.objects.filter(author=user, is_done=False).order_by('start_date')
+
+class OneTimeEventCreate(generics.ListCreateAPIView):
+    serializer_class = OneTimeEventSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def perform_create(self, serializer):
+        if serializer.is_valid():
+            serializer.save(author=self.request.user)
+        else:
+            print(serializer.errors)
+
+class OneTimeEventUpdate(generics.UpdateAPIView):
+    serializer_class = OneTimeEventSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        user = self.request.user
+        return OneTimeEvent.objects.filter(author=user, is_done=False)
+
+    def perform_update(self, serializer):
+        if serializer.is_valid():
+ 
+            instance = serializer.instance
+            
+            # remember_status = self.request.data.get('study_status', None)
+
+            instance.is_done = True
+
+            instance.save() 
+
+            print("Study history updated successfully.")
+        else:
+            print(serializer.errors)
+
+class OneTimeEventDelete(generics.DestroyAPIView):
+    serializer_class = OneTimeEventSerializer
+    permission_classes = [IsAuthenticated]
+ 
+    def get_queryset(self):
+        user = self.request.user
+        return OneTimeEvent.objects.filter(author=user)
 
 class NoteListCreate(generics.ListCreateAPIView):
     serializer_class = NoteSerializer
@@ -326,19 +376,6 @@ class MemoRecordCreate(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         if serializer.is_valid():
  
-            # study_scope = StudyScope.objects.create(
-            #     study_scope=get_default_study_scope()
-            # )
- 
-            # study_plan = StudyPlan.objects.create(
-            #     check_points=get_default_check_points()
-            # )
- 
-            # study_history = StudyHistory.objects.create(
-            #     study_history="Initial Study History",
-            #     study_days_count="1",
-            #     record_details_change_history="Initial History Details"
-            # )
             user = self.request.user
 
             try:
