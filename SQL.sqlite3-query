@@ -1,0 +1,22 @@
+-- database: ./db.sqlite3
+
+-- SELECT * FROM api_memorecord
+-- ORDER BY `id` ASC;
+
+
+UPDATE 'api_memorecord'
+SET 'next_study_time' = '2024-12-12 00:00:00'
+WHERE id = 1;
+
+UPDATE 'api_studyplan'
+SET 'soft_reset_date' = '2024-12-14 00:00:00'
+WHERE id = 1;
+
+
+SELECT next_study_time
+FROM api_memorecord
+WHERE id = 1;
+
+SELECT soft_reset_date
+FROM 'api_studyplan'
+WHERE id = 1;

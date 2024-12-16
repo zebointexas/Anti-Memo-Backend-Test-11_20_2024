@@ -45,7 +45,8 @@ def roll_back_check_point(revised_day, roll_back_count, memo_record): # 这里�
     
     study_plan_instance.save()
 
-    print("study_plan_instance.soft_reset_date  after udpate = " + str(study_plan_instance.soft_reset_date))
+    print("soft_reset_date after udpate = " + str(study_plan_instance.soft_reset_date))
+    print("soft_reset_date after udpate = " + str(memo_record.study_plan_id.soft_reset_date))
 
     memo_record.next_study_time = study_plan_instance.soft_reset_date + timedelta(days=( settings.CHECK_POINTS[index - roll_back_count + 1] - 1 ))
 
@@ -63,13 +64,21 @@ def soft_reset(memo_record):
 
 def next_study_time_normal_update(soft_reset_date, revised_day, memo_record): 
 
+    print("--> now enter normal update")
+
     index = settings.CHECK_POINTS.index(int(revised_day))
 
     if memo_record.in_half_year_repetition or index + 1 == len(settings.CHECK_POINTS): 
        memo_record.in_half_year_repetition = True
        memo_record.next_study_time = memo_record.next_study_time + timedelta(days=182) 
     else: 
+       print("--> now enter normal update --> index = " + str(index))
+       print("--> now enter normal update --> index = " + str(settings.CHECK_POINTS[index + 1]))
+       print("--> now enter normal update --> index = " + str(settings.CHECK_POINTS[index + 1] - 1))
+       print("--> now enter normal update --> soft_reset_date = " + str(soft_reset_date))
+       print("--> now enter normal update --> memo_record.next_study_time = " + str(memo_record.next_study_time))
        memo_record.next_study_time = soft_reset_date + timedelta( days=(settings.CHECK_POINTS[index + 1] - 1) )
+       print("--> now enter normal update --> memo_record.next_study_time updated = " + str(memo_record.next_study_time))
        memo_record.save()
 
 ###################### days handler 
@@ -85,9 +94,11 @@ def handle_day_2_or_4(revised_day, gap_days, memo_record):
        soft_reset(memo_record)   
 
 def handle_day_8_or_15(revised_day, gap_days, memo_record):
+    print("---> now enter 8")
     if gap_days == 1: 
+       print("---> now gap_days is 1")
        roll_back_check_point(revised_day, 1, memo_record)
-    if gap_days in (2,3): 
+    elif gap_days in (2,3): 
        roll_back_check_point(revised_day, 2, memo_record)       
     else: 
        soft_reset(memo_record)   
@@ -95,11 +106,11 @@ def handle_day_8_or_15(revised_day, gap_days, memo_record):
 def handle_day_30_or_60(revised_day, gap_days, memo_record):
     if gap_days in (1,2,3): 
        roll_back_check_point(revised_day, 1, memo_record)
-    if gap_days in (4,5,6,7,8): 
+    elif gap_days in (4,5,6,7,8): 
        roll_back_check_point(revised_day, 2, memo_record)       
-    if gap_days in (9,10,11,12): 
+    elif gap_days in (9,10,11,12): 
        roll_back_check_point(revised_day, 3, memo_record)       
-    if gap_days in (13,14,15,16): 
+    elif gap_days in (13,14,15,16): 
        roll_back_check_point(revised_day, 4, memo_record)              
     else: 
        soft_reset(memo_record)    
@@ -107,11 +118,11 @@ def handle_day_30_or_60(revised_day, gap_days, memo_record):
 def handle_day_90_or_120_or_180(revised_day, gap_days, memo_record):   
     if 1 <= gap_days <= 4: 
        roll_back_check_point(revised_day, 1, memo_record)
-    if 5 <= gap_days <= 10: 
+    elif 5 <= gap_days <= 10: 
        roll_back_check_point(revised_day, 2, memo_record)       
-    if 11 <= gap_days <= 16: 
+    elif 11 <= gap_days <= 16: 
        roll_back_check_point(revised_day, 3, memo_record)       
-    if 16 <= gap_days <= 22:  
+    elif 16 <= gap_days <= 22:  
        roll_back_check_point(revised_day, 5, memo_record)              
     else: 
        soft_reset(memo_record)      
@@ -119,11 +130,11 @@ def handle_day_90_or_120_or_180(revised_day, gap_days, memo_record):
 def handle_day_240_or_300_or_420(revised_day, gap_days, memo_record):  
     if 1 <= gap_days <= 5: 
        roll_back_check_point(revised_day, 1, memo_record)
-    if 6 <= gap_days <= 13: 
+    elif 6 <= gap_days <= 13: 
        roll_back_check_point(revised_day, 2, memo_record)       
-    if 14 <= gap_days <= 21: 
+    elif 14 <= gap_days <= 21: 
        roll_back_check_point(revised_day, 3, memo_record)       
-    if 22 <= gap_days <= 36:  
+    elif 22 <= gap_days <= 36:  
        roll_back_check_point(revised_day, 5, memo_record)              
     else: 
        soft_reset(memo_record)   
@@ -131,11 +142,11 @@ def handle_day_240_or_300_or_420(revised_day, gap_days, memo_record):
 def handle_day_rest_of_all(revised_day, gap_days, memo_record):  
     if 1 <= gap_days <= 15: 
        roll_back_check_point(revised_day, 1, memo_record)
-    if 16 <= gap_days <= 30: 
+    elif 16 <= gap_days <= 30: 
        roll_back_check_point(revised_day, 2, memo_record)       
-    if 31 <= gap_days <= 45: 
+    elif 31 <= gap_days <= 45: 
        roll_back_check_point(revised_day, 3, memo_record)       
-    if 46 <= gap_days <= 60:  
+    elif 46 <= gap_days <= 60:  
        roll_back_check_point(revised_day, 5, memo_record)              
     else: 
        soft_reset(memo_record)   
@@ -150,43 +161,44 @@ def update_next_study_time_for_study_plan(memo_record, revised_day):
 
         gap = today_day - int(revised_day)
  
+        print("---> Program is working")
+
         if gap == 0: 
+           print("--> Now gap is 0 !!!")
            next_study_time_normal_update(soft_reset_date, revised_day, memo_record)
+        else: 
+            key_handler_map = {
+                "1": handle_day_1,
+                "2": handle_day_2_or_4,
+                "4": handle_day_2_or_4,
+                "8": handle_day_8_or_15,
+                "15": handle_day_8_or_15,
+                "30": handle_day_30_or_60,
+                "60": handle_day_30_or_60,
+                "90": handle_day_90_or_120_or_180,
+                "120": handle_day_90_or_120_or_180,
+                "180": handle_day_90_or_120_or_180,
+                "240": handle_day_240_or_300_or_420,
+                "300": handle_day_240_or_300_or_420,
+                "420": handle_day_240_or_300_or_420,
+                "540": handle_day_rest_of_all,
+                "660": handle_day_rest_of_all,
+                "840": handle_day_rest_of_all,
+                "1020": handle_day_rest_of_all,
+                "1200": handle_day_rest_of_all,
+            }
 
-        print("-------------------------> gap " + str(gap))
+            print("-------------------> revised_day = " + str(revised_day))
 
-        key_handler_map = {
-            "1": handle_day_1,
-            "2": handle_day_2_or_4,
-            "4": handle_day_2_or_4,
-            "8": handle_day_8_or_15,
-            "15": handle_day_8_or_15,
-            "30": handle_day_30_or_60,
-            "60": handle_day_30_or_60,
-            "90": handle_day_90_or_120_or_180,
-            "120": handle_day_90_or_120_or_180,
-            "180": handle_day_90_or_120_or_180,
-            "240": handle_day_240_or_300_or_420,
-            "300": handle_day_240_or_300_or_420,
-            "420": handle_day_240_or_300_or_420,
-            "540": handle_day_rest_of_all,
-            "660": handle_day_rest_of_all,
-            "840": handle_day_rest_of_all,
-            "1020": handle_day_rest_of_all,
-            "1200": handle_day_rest_of_all,
-        }
+            handler = key_handler_map.get(revised_day)
 
-        print("-------------------> revised_day = " + str(revised_day))
-
-        handler = key_handler_map.get(revised_day)
-
-        handler(revised_day, gap, memo_record)
+            handler(revised_day, gap, memo_record)
          
 def update_study_plan(memo_record):
     check_points = memo_record.study_plan_id.check_points
     for revised_day, value in check_points.items():
         if value == "false":
-            check_points[revised_day] = "true"
+            check_points[revised_day] = "true"  
             memo_record.study_plan_id.check_points = check_points
             memo_record.study_plan_id.save()
             print("-----------> revised_day = " + revised_day)
@@ -196,6 +208,8 @@ def update_study_plan(memo_record):
              
 def check_study_history_and_update_next_study_time(memo_record, last_seven_lines, study_history_last_updated_time):
     
+    # print("--> now check history, and the id = " + str(memo_record.id))
+
     remember_count = 0; 
 
     if not last_seven_lines: 
@@ -224,6 +238,7 @@ def check_study_history_and_update_next_study_time(memo_record, last_seven_lines
     elif remember_count == 6:  
       wait_time = 5 
     elif remember_count == 7:  
+        print("--> now print count 7")
         current_date = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
         study_history_instance = memo_record.study_history_id
         study_history_instance.study_history = f"{study_history_instance.study_history}\nReviewed on: {current_date}    |    " + "Reset after 7 times Remember"
@@ -234,7 +249,8 @@ def check_study_history_and_update_next_study_time(memo_record, last_seven_lines
        memo_record.next_study_time = study_history_last_updated_time + timedelta(seconds=wait_time)
        memo_record.save()
     
-    print("======================================================> count for + " + str(remember_count))
+    # print("--> now check history: remember_count  + " + str(remember_count))
+    # print("======================================================> count for + " + str(remember_count))
 
 ###########################################################################
 ########################################################################### classes 
