@@ -226,17 +226,17 @@ def check_study_history_and_update_next_study_time(memo_record, last_seven_lines
     wait_time = 0
 
     if remember_count == 1: 
-       wait_time = 5
+       wait_time = 1
     elif remember_count == 2: 
-       wait_time = 5
+       wait_time = 2
     elif remember_count == 3:    
-       wait_time = 5
+       wait_time = 2
     elif remember_count == 4:  
-       wait_time = 5  
+       wait_time = 2  
     elif remember_count == 5:  
       wait_time = 5
     elif remember_count == 6:  
-      wait_time = 5 
+      wait_time = 30
     elif remember_count == 7:  
         print("--> now print count 7")
         current_date = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -246,7 +246,7 @@ def check_study_history_and_update_next_study_time(memo_record, last_seven_lines
         update_study_plan(memo_record)
 
     if remember_count != 7: 
-       memo_record.next_study_time = study_history_last_updated_time + timedelta(seconds=wait_time)
+       memo_record.next_study_time = study_history_last_updated_time + timedelta(minutes=wait_time)
        memo_record.save()
     
     # print("--> now check history: remember_count  + " + str(remember_count))
@@ -255,6 +255,64 @@ def check_study_history_and_update_next_study_time(memo_record, last_seven_lines
 ###########################################################################
 ########################################################################### classes 
 ########################################################################### 
+
+class BlogList(generics.ListCreateAPIView):
+    serializer_class = BlogSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Blog.objects.filter(author=user).order_by('-created_at')
+    
+class SpecificBlog(generics.ListCreateAPIView):
+    serializer_class = BlogSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        pk = self.kwargs.get("pk")
+        return Blog.objects.filter(author=user, id=pk)    
+
+class BlogCreate(generics.ListCreateAPIView):
+    serializer_class = BlogSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def perform_create(self, serializer):
+        if serializer.is_valid():
+            serializer.save(author=self.request.user)
+        else:
+            print(serializer.errors)
+
+class BlogUpdate(generics.UpdateAPIView):
+    serializer_class = BlogSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        user = self.request.user
+        return Blog.objects.filter(author=user, is_done=False)
+
+    def perform_update(self, serializer):
+        if serializer.is_valid():
+            instance = serializer.instance
+            instance.save()
+        else:
+            print(serializer.errors)
+
+class BlogDelete(generics.DestroyAPIView):
+    serializer_class = BlogSerializer
+    permission_classes = [IsAuthenticated]
+ 
+    def get_queryset(self):
+        user = self.request.user
+        return BlogSerializer.objects.filter(author=user)
+
+class OneTimeEventDelete(generics.DestroyAPIView):
+    serializer_class = OneTimeEventSerializer
+    permission_classes = [IsAuthenticated]
+ 
+    def get_queryset(self):
+        user = self.request.user
+        return OneTimeEvent.objects.filter(author=user)
 
 class OneTimeEventList(generics.ListCreateAPIView):
     serializer_class = OneTimeEventSerializer

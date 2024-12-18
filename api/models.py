@@ -31,6 +31,18 @@ def get_default_study_scope():
         "category": "all"
     }
 
+class Blog(models.Model):
+    blog_name = models.CharField(max_length=50)
+    blog_content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)  
+    author = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE, 
+        related_name="blog", 
+        default=1  
+    )
+    last_updated = models.DateTimeField(auto_now=True) 
+
 class OneTimeEvent(models.Model):
     event_name = models.CharField(max_length=50)
     event_details = models.TextField()

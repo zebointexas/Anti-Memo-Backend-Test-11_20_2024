@@ -2,6 +2,23 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import *
 
+class BlogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Blog
+        fields = [
+            "id", 
+            "blog_name",
+            "blog_content", 
+            "created_at", 
+            "author", 
+            "last_updated"
+        ]
+        extra_kwargs = {
+            "author": {"read_only": True},  # 作者由后端自动设置
+            "created_at": {"read_only": True},  # 自动生成
+            "last_updated": {"read_only": True},  # 自动生成
+        }
+
 class OneTimeEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = OneTimeEvent

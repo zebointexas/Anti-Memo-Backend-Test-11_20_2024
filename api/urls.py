@@ -20,4 +20,9 @@ urlpatterns = [
     path("one_time_event/update/<int:pk>/", views.OneTimeEventUpdate.as_view(), name="update-one-time-event"),
     path("one_time_event/delete/<int:pk>/", views.OneTimeEventDelete.as_view(), name="delete-one-time-event"),
 
+    path("blog_list/", views.BlogList.as_view(), name="fetch-blogs"),
+    path("blog/<int:pk>/", views.SpecificBlog.as_view(), name="get-specific-blog"),
+    path("blog/create/", views.BlogCreate.as_view(), name="create-blog"),
+    path("blog/update/<int:pk>/", views.BlogUpdate.as_view(), name="update-blog"),
+    path("blog/delete/<int:pk>/", views.BlogDelete.as_view(), name="delete-blog"),
 ]
