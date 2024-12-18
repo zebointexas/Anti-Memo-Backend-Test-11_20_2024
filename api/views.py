@@ -289,14 +289,21 @@ class BlogUpdate(generics.UpdateAPIView):
     
     def get_queryset(self):
         user = self.request.user
-        return Blog.objects.filter(author=user, is_done=False)
+        return Blog.objects.filter(author=user)
 
     def perform_update(self, serializer):
         if serializer.is_valid():
+ 
             instance = serializer.instance
-            instance.save()
+            data = self.request.data
+
+            for field, value in data.items():
+                if hasattr(instance, field):  
+                    setattr(instance, field, value)  
+            
+            instance.save()  
         else:
-            print(serializer.errors)
+            print(serializer.errors)        
 
 class BlogDelete(generics.DestroyAPIView):
     serializer_class = BlogSerializer
@@ -344,14 +351,13 @@ class OneTimeEventUpdate(generics.UpdateAPIView):
         if serializer.is_valid():
  
             instance = serializer.instance
+            data = self.request.data
+
+            for field, value in data.items():
+                if hasattr(instance, field):  
+                    setattr(instance, field, value)  
             
-            # remember_status = self.request.data.get('study_status', None)
-
-            instance.is_done = True
-
-            instance.save() 
-
-            print("Study history updated successfully.")
+            instance.save()  
         else:
             print(serializer.errors)
 
