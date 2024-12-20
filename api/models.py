@@ -32,8 +32,9 @@ def get_default_study_scope():
     }
 
 class Blog(models.Model):
-    blog_name = models.CharField(max_length=50)
+    blog_name = models.CharField(max_length=500)
     blog_content = models.TextField()
+    blog_type = models.CharField(max_length=20)
     created_at = models.DateTimeField(auto_now_add=True)  
     author = models.ForeignKey(
         User, 

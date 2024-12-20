@@ -8,7 +8,8 @@ class BlogSerializer(serializers.ModelSerializer):
         fields = [
             "id", 
             "blog_name",
-            "blog_content", 
+            "blog_content",
+            "blog_type", 
             "created_at", 
             "author", 
             "last_updated"
