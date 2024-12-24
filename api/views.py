@@ -518,7 +518,7 @@ class SubjectTypeList(generics.ListCreateAPIView):
     
     def get_queryset(self):
         user = self.request.user
-        return SubjectType.objects.filter(author=user)
+        return SubjectType.objects.filter(author=user).order_by("type")
 
 # class SubjectTypeList(generics.ListCreateAPIView):
 #     serializer_class = SubjectTypeSerializer

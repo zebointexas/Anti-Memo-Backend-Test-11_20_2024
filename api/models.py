@@ -72,7 +72,7 @@ class StudyScope(models.Model):
 
 class SubjectType(models.Model):
     type = models.CharField(max_length=20)
-    category = models.CharField(max_length=20, default="Default Category")
+    category = models.CharField(max_length=20, default="SDE_Interview")
     author = models.ForeignKey(
         User, 
         on_delete=models.CASCADE, 
