@@ -579,8 +579,8 @@ class MemoRecordUpdateStudyHistory(generics.UpdateAPIView):
             print("Study history updated successfully.")
         else:
             print(serializer.errors)
-
-class MemoRecordUpdateRecordDetails(generics.UpdateAPIView):
+    
+class MemoRecordUpdate(generics.UpdateAPIView):
     serializer_class = MemoRecordSerializer
     permission_classes = [IsAuthenticated]
 
@@ -591,9 +591,14 @@ class MemoRecordUpdateRecordDetails(generics.UpdateAPIView):
     def perform_update(self, serializer):
         if serializer.is_valid():
             instance = serializer.instance
-            record_details = self.request.data.get('record_details', None)
-            instance.record_details = record_details
+            data = self.request.data
+            for field, value in data.items():
+                # 确保该字段在模型中存在
+                if hasattr(instance, field):
+                    setattr(instance, field, value)  # 动态更新字段值
+            # 保存更新后的实例
             instance.save()
+            print(f"Updated MemoRecord: {instance.id}")
         else:
             print(serializer.errors)
 
