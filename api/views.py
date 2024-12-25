@@ -159,7 +159,7 @@ def update_next_study_time_for_study_plan(memo_record, revised_day):
 
         today_day = (timezone.now() - soft_reset_date).days + 1 
 
-        gap = today_day - int(revised_day)
+        gap = max(today_day - int(revised_day) - 1, 0);   # Due to UTC time zone issue. Here in Vancouver, 4:00pm becomes the next day. So I put a hard coding here: pull backward 1 day
  
         print("---> Program is working")
 
@@ -236,7 +236,7 @@ def check_study_history_and_update_next_study_time(memo_record, last_seven_lines
     elif remember_count == 5:  
       wait_time = 5
     elif remember_count == 6:  
-      wait_time = 30
+      wait_time = 10
     elif remember_count == 7:  
         print("--> now print count 7")
         current_date = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
