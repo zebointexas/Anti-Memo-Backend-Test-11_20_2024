@@ -235,7 +235,7 @@ def check_study_history_and_update_next_study_time(all_memo_records, memo_record
 
 
     if remember_count != 7: 
-       memo_record.next_study_time = study_history_last_updated_time + timedelta(seconds=wait_time)
+       memo_record.next_study_time = study_history_last_updated_time + timedelta(minutes=wait_time)
        memo_record.save()
     
     # print("--> now check history: remember_count  + " + str(remember_count))
