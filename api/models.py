@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from enum import Enum
-from django.utils import timezone
 
 def get_default_check_points():
     return {

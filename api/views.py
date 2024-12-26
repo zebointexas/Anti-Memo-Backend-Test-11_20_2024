@@ -1,19 +1,14 @@
-import logging
-from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .serializers import *
 from .models import *
 from django.utils import timezone
-from datetime import datetime
-from django.utils.timezone import localtime, now
 from datetime import timedelta
 from dateutil.relativedelta import relativedelta
 from rest_framework.response import Response 
 from rest_framework import status
 from django.conf import settings
-from django.http import JsonResponse
 from django.db.models import Q
 from django.db.models import Case, When, Value, IntegerField
 
@@ -35,19 +30,13 @@ def roll_back_check_point(revised_day, roll_back_count, memo_record): # 这里�
     index = settings.CHECK_POINTS.index(int(revised_day))  # 拿到 revised_day (变成True) 的 index
 
     day_after_rollback = settings.CHECK_POINTS[index - roll_back_count] # rolled_back_day，等于，重新算之后，今天是day几
-
-    print("day_after_rollback = " + str(day_after_rollback))
-
-    # below is updating "soft_reset_date" date
+ 
     study_plan_instance = memo_record.study_plan_id
 
     study_plan_instance.soft_reset_date = timezone.now().replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(days=day_after_rollback - 1)
     
     study_plan_instance.save()
-
-    print("soft_reset_date after udpate = " + str(study_plan_instance.soft_reset_date))
-    print("soft_reset_date after udpate = " + str(memo_record.study_plan_id.soft_reset_date))
-
+ 
     memo_record.next_study_time = study_plan_instance.soft_reset_date + timedelta(days=( settings.CHECK_POINTS[index - roll_back_count + 1] - 1 ))
 
     memo_record.save()
@@ -72,12 +61,7 @@ def next_study_time_normal_update(soft_reset_date, revised_day, memo_record):
        memo_record.in_half_year_repetition = True
        memo_record.next_study_time = memo_record.next_study_time + timedelta(days=182) 
     else: 
-       print("--> now enter normal update --> index = " + str(index))
-       print("--> now enter normal update --> index = " + str(settings.CHECK_POINTS[index + 1]))
-       print("--> now enter normal update --> index = " + str(settings.CHECK_POINTS[index + 1] - 1))
-       print("--> now enter normal update --> soft_reset_date = " + str(soft_reset_date))
-       print("--> now enter normal update --> memo_record.next_study_time = " + str(memo_record.next_study_time))
-       memo_record.next_study_time = soft_reset_date + timedelta( days=(settings.CHECK_POINTS[index + 1] - 1) )
+       memo_record.next_study_time = soft_reset_date.replace(hour=0, minute=0, second=0, microsecond=0) + timedelta( days=(settings.CHECK_POINTS[index + 1] - 1) )
        print("--> now enter normal update --> memo_record.next_study_time updated = " + str(memo_record.next_study_time))
        memo_record.save()
 
@@ -157,10 +141,10 @@ def update_next_study_time_for_study_plan(memo_record, revised_day):
     else: 
         soft_reset_date = memo_record.study_plan_id.soft_reset_date
 
-        today_day = (timezone.now() - soft_reset_date).days + 1 
+        today_day = (timezone.now()  - soft_reset_date).days + 1  # 因为，比如，今天 - 今天，其实是 0， 它这里要按照完整的一天，才算1天。
+     
+        gap = today_day - int(revised_day)
 
-        gap = max(today_day - int(revised_day) - 1, 0);   # Due to UTC time zone issue. Here in Vancouver, 4:00pm becomes the next day. So I put a hard coding here: pull backward 1 day
- 
         print("---> Program is working")
 
         if gap == 0: 
@@ -206,7 +190,7 @@ def update_study_plan(memo_record):
             return False
     memo_record.in_half_year_repetition = True
              
-def check_study_history_and_update_next_study_time(memo_record, last_seven_lines, study_history_last_updated_time):
+def check_study_history_and_update_next_study_time(all_memo_records, memo_record, last_seven_lines, study_history_last_updated_time):
     
     # print("--> now check history, and the id = " + str(memo_record.id))
 
@@ -216,11 +200,14 @@ def check_study_history_and_update_next_study_time(memo_record, last_seven_lines
         return
 
     for eachLine in reversed(last_seven_lines):
+
+        print(eachLine)
+
         if eachLine.strip():                 
             last_word = get_last_word(eachLine)
             if last_word == 'Remember':
                 remember_count += 1
-            if last_word == 'Forget':
+            else:
                 break
  
     wait_time = 0
@@ -241,12 +228,14 @@ def check_study_history_and_update_next_study_time(memo_record, last_seven_lines
         print("--> now print count 7")
         current_date = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
         study_history_instance = memo_record.study_history_id
-        study_history_instance.study_history = f"{study_history_instance.study_history}\nReviewed on: {current_date}    |    " + "Reset after 7 times Remember"
+        study_history_instance.study_history = f"{study_history_instance.study_history}\nReviewed on: {current_date}    |    " + "7 times Remember, now reset"
         study_history_instance.save()
         update_study_plan(memo_record)
+        all_memo_records.remove(memo_record)
+
 
     if remember_count != 7: 
-       memo_record.next_study_time = study_history_last_updated_time + timedelta(minutes=wait_time)
+       memo_record.next_study_time = study_history_last_updated_time + timedelta(seconds=wait_time)
        memo_record.save()
     
     # print("--> now check history: remember_count  + " + str(remember_count))
@@ -425,7 +414,7 @@ class MemoRecordList(generics.ListCreateAPIView):
         subject_types = study_scope_data.get('subject_types', [])
         categories = study_scope_data.get('categories', [])
  
-        memo_records = MemoRecord.objects.filter(author=user, next_study_time__lte=timezone.now()).select_related('study_plan_id', 'study_history_id', 'study_scope_id')
+        memo_records = MemoRecord.objects.filter(author=user, next_study_time__lte= timezone.now() ).select_related('study_plan_id', 'study_history_id', 'study_scope_id')
 
         if subject_types:
             memo_records = memo_records.filter(subject_type__in=subject_types)
@@ -437,6 +426,8 @@ class MemoRecordList(generics.ListCreateAPIView):
 
         for record in memo_records[:]:
  
+            print("----------------------- timezone.now() = " + str(   timezone.now()   ))
+ 
             if record.next_study_time > timezone.now(): 
                 memo_records.remove(record)
 
@@ -444,8 +435,12 @@ class MemoRecordList(generics.ListCreateAPIView):
                 study_history_content = record.study_history_id.study_history   
                 study_history_last_updated_time = record.study_history_id.last_updated
                 study_history_lines = study_history_content.splitlines()
-                last_seven_lines = study_history_lines[-7:]  
-                check_study_history_and_update_next_study_time(record, last_seven_lines, study_history_last_updated_time)
+                last_seven_lines = study_history_lines[-7:] 
+
+                print("---------->last_seven_lines = ")
+                print( last_seven_lines )
+
+                check_study_history_and_update_next_study_time(memo_records, record, last_seven_lines, study_history_last_updated_time)
 
         return memo_records
 

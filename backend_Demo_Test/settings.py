@@ -148,9 +148,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-USE_TZ = True
-
+# 使用 Vancouver 时区（PST/PDT）
 TIME_ZONE = 'America/Vancouver'
+
+# 启用时区支持
+USE_TZ = False
 
 USE_I18N = True
 
