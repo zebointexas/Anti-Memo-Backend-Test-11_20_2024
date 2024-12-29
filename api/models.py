@@ -1,6 +1,34 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+def update_check_points(day):
+    check_points = {
+        "1": "false",
+        "2": "false",
+        "4": "false",
+        "8": "false",
+        "15": "false",
+        "30": "false",
+        "60": "false",
+        "90": "false",
+        "120": "false",
+        "180": "false",
+        "240": "false",
+        "300": "false",
+        "420": "false",
+        "540": "false",
+        "660": "false",
+        "840": "false", 
+        "1020": "false",
+        "1200": "false"
+    }
+
+    for key in check_points:
+        if int(key) <= day:
+            check_points[key] = "true"
+
+    return check_points
+
 def get_default_check_points():
     return {
         "1": "false",

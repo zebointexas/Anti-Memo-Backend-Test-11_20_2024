@@ -8198,3 +8198,289 @@ Traceback (most recent call last):
     print("---------->last_seven_lines = " + last_seven_lines)
 TypeError: must be str, not list
 "GET /api/memo_records_list/ HTTP/1.1" 500 106387
+Internal Server Error: /api/memo_records_list/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/generics.py", line 243, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 450, in get_queryset
+    check_study_history_and_update_next_study_time(memo_records, record, last_seven_lines, study_history_last_updated_time)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 240, in check_study_history_and_update_next_study_time
+    update_study_plan(memo_record)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 196, in update_study_plan
+    update_next_study_time_for_study_plan(memo_record, revised_day)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 186, in update_next_study_time_for_study_plan
+    handler(revised_day, gap, memo_record)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 85, in handle_day_2_or_4
+    soft_reset(memo_record)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 57, in soft_reset
+    study_plan_instance.save()
+AttributeError: 'dict' object has no attribute 'save'
+"GET /api/memo_records_list/ HTTP/1.1" 500 132362
+Internal Server Error: /api/one_time_event/update/148/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/generics.py", line 233, in patch
+    return self.partial_update(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/mixins.py", line 68, in update
+    self.perform_update(serializer)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 364, in perform_update
+    instance.save()
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/base.py", line 740, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/base.py", line 778, in save_base
+    force_update, using, update_fields,
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/base.py", line 859, in _save_table
+    forced_update)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/base.py", line 912, in _do_update
+    return filtered._update(values) > 0
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/query.py", line 802, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1559, in execute_sql
+    cursor = super().execute_sql(result_type)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1162, in execute_sql
+    sql, params = self.as_sql()
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1525, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 842, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1428, in get_db_prep_value
+    return connection.ops.adapt_datetimefield_value(value)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/backends/sqlite3/operations.py", line 249, in adapt_datetimefield_value
+    raise ValueError("SQLite backend does not support timezone-aware datetimes when USE_TZ is False.")
+ValueError: SQLite backend does not support timezone-aware datetimes when USE_TZ is False.
+"PATCH /api/one_time_event/update/148/ HTTP/1.1" 500 175928
+Internal Server Error: /api/one_time_event/update/148/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/generics.py", line 233, in patch
+    return self.partial_update(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/mixins.py", line 68, in update
+    self.perform_update(serializer)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 364, in perform_update
+    instance.save()
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/base.py", line 740, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/base.py", line 778, in save_base
+    force_update, using, update_fields,
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/base.py", line 859, in _save_table
+    forced_update)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/base.py", line 912, in _do_update
+    return filtered._update(values) > 0
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/query.py", line 802, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1559, in execute_sql
+    cursor = super().execute_sql(result_type)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1162, in execute_sql
+    sql, params = self.as_sql()
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1525, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 842, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1428, in get_db_prep_value
+    return connection.ops.adapt_datetimefield_value(value)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/backends/sqlite3/operations.py", line 249, in adapt_datetimefield_value
+    raise ValueError("SQLite backend does not support timezone-aware datetimes when USE_TZ is False.")
+ValueError: SQLite backend does not support timezone-aware datetimes when USE_TZ is False.
+"PATCH /api/one_time_event/update/148/ HTTP/1.1" 500 175928
+Internal Server Error: /api/one_time_event/update/129/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/generics.py", line 233, in patch
+    return self.partial_update(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/mixins.py", line 68, in update
+    self.perform_update(serializer)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 364, in perform_update
+    instance.save()
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/base.py", line 740, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/base.py", line 778, in save_base
+    force_update, using, update_fields,
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/base.py", line 859, in _save_table
+    forced_update)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/base.py", line 912, in _do_update
+    return filtered._update(values) > 0
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/query.py", line 802, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1559, in execute_sql
+    cursor = super().execute_sql(result_type)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1162, in execute_sql
+    sql, params = self.as_sql()
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1525, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 842, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1428, in get_db_prep_value
+    return connection.ops.adapt_datetimefield_value(value)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/backends/sqlite3/operations.py", line 249, in adapt_datetimefield_value
+    raise ValueError("SQLite backend does not support timezone-aware datetimes when USE_TZ is False.")
+ValueError: SQLite backend does not support timezone-aware datetimes when USE_TZ is False.
+"PATCH /api/one_time_event/update/129/ HTTP/1.1" 500 170934
+Internal Server Error: /api/one_time_event/update/148/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/generics.py", line 233, in patch
+    return self.partial_update(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/mixins.py", line 68, in update
+    self.perform_update(serializer)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 364, in perform_update
+    instance.save()
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/base.py", line 740, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/base.py", line 778, in save_base
+    force_update, using, update_fields,
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/base.py", line 859, in _save_table
+    forced_update)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/base.py", line 912, in _do_update
+    return filtered._update(values) > 0
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/query.py", line 802, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1559, in execute_sql
+    cursor = super().execute_sql(result_type)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1162, in execute_sql
+    sql, params = self.as_sql()
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1525, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 842, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1428, in get_db_prep_value
+    return connection.ops.adapt_datetimefield_value(value)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/backends/sqlite3/operations.py", line 249, in adapt_datetimefield_value
+    raise ValueError("SQLite backend does not support timezone-aware datetimes when USE_TZ is False.")
+ValueError: SQLite backend does not support timezone-aware datetimes when USE_TZ is False.
+"PATCH /api/one_time_event/update/148/ HTTP/1.1" 500 175928
+Internal Server Error: /api/one_time_event/update/191/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/generics.py", line 233, in patch
+    return self.partial_update(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/rest_framework/mixins.py", line 68, in update
+    self.perform_update(serializer)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 364, in perform_update
+    instance.save()
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/base.py", line 740, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/base.py", line 778, in save_base
+    force_update, using, update_fields,
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/base.py", line 859, in _save_table
+    forced_update)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/base.py", line 912, in _do_update
+    return filtered._update(values) > 0
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/query.py", line 802, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1559, in execute_sql
+    cursor = super().execute_sql(result_type)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1162, in execute_sql
+    sql, params = self.as_sql()
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/sql/compiler.py", line 1525, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 842, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/models/fields/__init__.py", line 1428, in get_db_prep_value
+    return connection.ops.adapt_datetimefield_value(value)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi/lib/python3.6/site-packages/django/db/backends/sqlite3/operations.py", line 249, in adapt_datetimefield_value
+    raise ValueError("SQLite backend does not support timezone-aware datetimes when USE_TZ is False.")
+ValueError: SQLite backend does not support timezone-aware datetimes when USE_TZ is False.
+"PATCH /api/one_time_event/update/191/ HTTP/1.1" 500 170881
