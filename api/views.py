@@ -17,9 +17,69 @@ import random
 ########################################################################### Methods 
 ###########################################################################
 
-         
-                                          
+def exam_every_record(memo_records):
+
+    memo_records = list(memo_records) 
+
+    for record in memo_records[:]:
+
+        if record.study_history_id: 
+            study_history_content = record.study_history_id.study_history   
+            study_history_last_updated_time = record.study_history_id.last_updated
+            study_history_lines = study_history_content.splitlines()
+            last_seven_lines = study_history_lines[-7:] 
  
+            check_study_history_and_update_next_study_time(memo_records, record, last_seven_lines, study_history_last_updated_time)
+
+    return memo_records
+
+
+def filter_by_next_study_time(user): 
+
+    memo_records = MemoRecord.objects.filter(author=user, next_study_time__lte= timezone.now(), is_activate=True).select_related('study_plan_id', 'study_history_id', 'study_scope_id').order_by('next_study_time')
+ 
+    return memo_records; 
+
+def filter_by_study_scope(memo_records, user):
+
+    try:
+        study_scope = StudyScope.objects.get(author=user)
+        study_scope_data = study_scope.study_scope  
+    except StudyScope.DoesNotExist:
+        return MemoRecord.objects.none()
+
+    subject_types = study_scope_data.get('subject_types', [])
+    categories = study_scope_data.get('categories', [])
+ 
+    if subject_types:
+        memo_records = memo_records.filter(subject_type__in=subject_types)
+    if categories:
+        subject_types = SubjectType.objects.filter(category__in=categories, author=user).values_list('type', flat=True)
+        memo_records = memo_records.filter(subject_type__in=list(subject_types))
+    
+    return memo_records
+
+def get_seleted_50_memo_records(memo_records, past_hours): 
+    
+    time_limit = timezone.now() - timedelta(hours=past_hours)
+ 
+    # 1. 过滤出 "next_study_time" 在过去 past_hours 小时内的记录
+    recent_records = [record for record in memo_records if record.next_study_time >= time_limit]
+ 
+    # 2. 如果记录数量不到50个，就选择最早的记录来补充 （如果超过50，那就有多少就return多少）
+    if len(recent_records) < 50:
+        remaining_records = sorted([record for record in memo_records if record.next_study_time < time_limit], key=lambda x: x.next_study_time)
+
+        # 补充不足的记录
+        records_to_add = remaining_records[:50 - len(recent_records)]
+
+        # 将补充的记录添加到 recent_records
+        recent_records.extend(records_to_add)
+    
+    random.shuffle(recent_records)
+
+    return recent_records[:50]
+
 def get_last_word(eachLine):
     words = eachLine.strip().split()
     if not words:
@@ -233,24 +293,23 @@ def check_study_history_and_update_next_study_time(all_memo_records, memo_record
     elif remember_count == 2: 
        wait_time = 2
     elif remember_count == 3:    
-       wait_time = 2
+       wait_time = 3
     elif remember_count == 4:  
-       wait_time = 2  
-    elif remember_count == 5:  
-      wait_time = 5
-    elif remember_count == 6:  
-      wait_time = 10
-    elif remember_count == 7:  
-        print("--> now print count 7")
+       wait_time = 4  
+    elif remember_count >= 5:  
+        print("--> now print count 5")
         current_date = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
         study_history_instance = memo_record.study_history_id
-        study_history_instance.study_history = f"{study_history_instance.study_history}\nReviewed on: {current_date}    |    " + "7 times Remember, now reset"
+        study_history_instance.study_history = f"{study_history_instance.study_history}\nReviewed on: {current_date}    |    " + "5 times Remember, now reset"
         study_history_instance.save()
         update_study_plan(memo_record)
         all_memo_records.remove(memo_record)
 
-    if remember_count != 7: 
-       memo_record.next_study_time = study_history_last_updated_time + timedelta(minutes=wait_time)
+    print("--------------------------------------------------------------------------------> remember_count = " + str(remember_count))
+    if remember_count in (1,2,3,4): 
+       print("--------------------------------------------------------------------------------> timezone.now() = " + str(timezone.now()))
+       memo_record.next_study_time = timezone.now() + timedelta(minutes=wait_time)
+       print("--------------------------------------------------------------------------------> next_study_time = " + str(memo_record.next_study_time))
        memo_record.save()
     
     # print("--> now check history: remember_count  + " + str(remember_count))
@@ -415,51 +474,15 @@ class MemoRecordList(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
  
     def get_queryset(self):
-        user = self.request.user
+        user = self.request.user      
 
-        # 获取用户的 study_scope 数据
-        try:
-            study_scope = StudyScope.objects.get(author=user)
-            study_scope_data = study_scope.study_scope  # 获取 study_scope 的 JSON 数据
-        except StudyScope.DoesNotExist:
-            # 如果用户没有对应的 StudyScope，返回空列表或默认行为
-            return MemoRecord.objects.none()
-
-        # 获取 JSON 数据中的 subject_types 和 categories
-        subject_types = study_scope_data.get('subject_types', [])
-        categories = study_scope_data.get('categories', [])
+        memo_records = filter_by_next_study_time(user)
  
-        memo_records = MemoRecord.objects.filter(author=user, next_study_time__lte= timezone.now() ).select_related('study_plan_id', 'study_history_id', 'study_scope_id')
-
-        if subject_types:
-            memo_records = memo_records.filter(subject_type__in=subject_types)
-        if categories:
-            subject_types = SubjectType.objects.filter(category__in=categories, author=user).values_list('type', flat=True)
-            memo_records = memo_records.filter(subject_type__in=list(subject_types))
-  
-        memo_records = list(memo_records)  
-
-        for record in memo_records[:]:
+        memo_records = filter_by_study_scope(memo_records, user)
  
-            # print("----------------------- timezone.now() = " + str(   timezone.now()   ))
- 
-            if record.next_study_time > timezone.now(): 
-                memo_records.remove(record)
+        memo_records = exam_every_record(memo_records)
 
-            if record.study_history_id: 
-                study_history_content = record.study_history_id.study_history   
-                study_history_last_updated_time = record.study_history_id.last_updated
-                study_history_lines = study_history_content.splitlines()
-                last_seven_lines = study_history_lines[-7:] 
-
-                # print("---------->last_seven_lines = ")
-                # print( last_seven_lines )
-
-                check_study_history_and_update_next_study_time(memo_records, record, last_seven_lines, study_history_last_updated_time)
-
-            random.shuffle(memo_records)
-
-        return memo_records
+        return get_seleted_50_memo_records(memo_records, 12)
 
 class MemoRecordCreate(generics.ListCreateAPIView):
     serializer_class = MemoRecordSerializer
@@ -631,6 +654,29 @@ class StudyScopeUpdate(generics.UpdateAPIView):
         else:
             print(serializer.errors)
  
+class StudyPlanReset(generics.UpdateAPIView):
+    serializer_class = MemoRecordSerializer
+    permission_classes = [IsAuthenticated]
+  
+    def get_queryset(self):
+        user = self.request.user
+        return MemoRecord.objects.filter(author=user)
+
+    def perform_update(self, serializer):
+        if serializer.is_valid():
+ 
+            instance = serializer.instance
+    
+            study_plan_instance = instance.study_plan_id
+             
+            study_plan_instance.check_points = get_default_check_points()
+ 
+            study_plan_instance.save() 
+
+            print("Study plan reset successfully.")
+        else:
+            print(serializer.errors)
+
 class MemoRecordSearch(generics.ListCreateAPIView):
     serializer_class = MemoRecordSerializer
     permission_classes = [IsAuthenticated]

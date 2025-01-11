@@ -25,4 +25,6 @@ urlpatterns = [
     path("blog/create/", views.BlogCreate.as_view(), name="create-blog"),
     path("blog/update/<int:pk>/", views.BlogUpdate.as_view(), name="update-blog"),
     path("blog/delete/<int:pk>/", views.BlogDelete.as_view(), name="delete-blog"),
+
+    path("study_plan/reset/<int:pk>/", views.StudyPlanReset.as_view(), name="study-plan-reset"),
 ]
