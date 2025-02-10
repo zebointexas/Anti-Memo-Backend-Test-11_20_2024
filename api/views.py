@@ -27,7 +27,7 @@ def exam_every_record(memo_records):
             study_history_content = record.study_history_id.study_history   
             study_history_last_updated_time = record.study_history_id.last_updated
             study_history_lines = study_history_content.splitlines()
-            last_seven_lines = study_history_lines[-7:] 
+            last_seven_lines = study_history_lines[-3:] 
  
             check_study_history_and_update_next_study_time(memo_records, record, last_seven_lines, study_history_last_updated_time)
 
@@ -288,32 +288,56 @@ def check_study_history_and_update_next_study_time(all_memo_records, memo_record
  
     wait_time = 0
 
-    if remember_count == 1: 
-       wait_time = 1
+    # if(memo_record.subject_type == "Algo"):
+
+    if remember_count == 0: 
+            wait_time = 1
+    elif remember_count == 1: 
+            wait_time = 5
     elif remember_count == 2: 
-       wait_time = 2
-    elif remember_count == 3:    
-       wait_time = 3
-    elif remember_count == 4:  
-       wait_time = 4  
-    elif remember_count >= 5:  
-        print("--> now print count 5")
-        current_date = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
-        study_history_instance = memo_record.study_history_id
-        study_history_instance.study_history = f"{study_history_instance.study_history}\nReviewed on: {current_date}    |    " + "5 times Remember, now reset"
-        study_history_instance.save()
-        update_study_plan(memo_record)
-        all_memo_records.remove(memo_record)
+            wait_time = 15
+    elif remember_count == 3:  
+            print("--> now print count 3")
+            current_date = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
+            study_history_instance = memo_record.study_history_id
+            study_history_instance.study_history = f"{study_history_instance.study_history}\nReviewed on: {current_date}    |    " + "3 times Remember, now reset"
+            study_history_instance.save()
+            update_study_plan(memo_record)
+            all_memo_records.remove(memo_record)
 
     print("--------------------------------------------------------------------------------> remember_count = " + str(remember_count))
-    if remember_count in (1,2,3,4): 
-       print("--------------------------------------------------------------------------------> timezone.now() = " + str(timezone.now()))
-       memo_record.next_study_time = timezone.now() + timedelta(minutes=wait_time)
-       print("--------------------------------------------------------------------------------> next_study_time = " + str(memo_record.next_study_time))
-       memo_record.save()
+    if remember_count in (0,1,2): 
+            print("--------------------------------------------------------------------------------> timezone.now() = " + str(timezone.now()))
+            memo_record.next_study_time = timezone.now() + timedelta(minutes=wait_time)
+            print("--------------------------------------------------------------------------------> next_study_time = " + str(memo_record.next_study_time))
+            memo_record.save()
     
     # print("--> now check history: remember_count  + " + str(remember_count))
     # print("======================================================> count for + " + str(remember_count))
+
+    # else:
+        
+    #     if remember_count == 1: 
+    #         wait_time = 1
+    #     elif remember_count == 2: 
+    #         wait_time = 2
+    #     elif remember_count == 3: 
+    #         wait_time = 3
+    #     elif remember_count == 4: 
+    #         wait_time = 4
+    #     elif remember_count == 5: 
+    #         print("--> now print count 5")
+    #         current_date = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
+    #         study_history_instance = memo_record.study_history_id
+    #         study_history_instance.study_history = f"{study_history_instance.study_history}\nReviewed on: {current_date}    |    " + "5 times Remember, now reset"
+    #         study_history_instance.save()
+    #         update_study_plan(memo_record)
+    #         all_memo_records.remove(memo_record)
+
+    #     if remember_count in (1,2,3,4): 
+    #            memo_record.next_study_time = timezone.now() + timedelta(minutes=wait_time)
+    #            memo_record.save()
+
 
 ###########################################################################
 ########################################################################### classes 
