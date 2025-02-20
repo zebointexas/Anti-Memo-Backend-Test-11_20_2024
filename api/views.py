@@ -398,7 +398,7 @@ class BlogDelete(generics.DestroyAPIView):
  
     def get_queryset(self):
         user = self.request.user
-        return BlogSerializer.objects.filter(author=user)
+        return Blog.objects.filter(author=user)
 
 class OneTimeEventDelete(generics.DestroyAPIView):
     serializer_class = OneTimeEventSerializer
