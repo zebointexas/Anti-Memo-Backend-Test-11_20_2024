@@ -150,7 +150,7 @@ class MemoRecord(models.Model):
         related_name="study_plan_model",
         default=1
     )
-    subject_type = models.CharField(max_length = 20)
+    subject_type = models.CharField(max_length = 50)
     importance_level = models.SmallIntegerField(default=1)
     in_half_year_repetition = models.BooleanField(default=False)
     question = models.TextField(default="N/A")
