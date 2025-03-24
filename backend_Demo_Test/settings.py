@@ -15,6 +15,7 @@ from datetime import timedelta
 from dotenv import load_dotenv
 import os
 
+
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,7 +31,7 @@ SECRET_KEY = 'django-insecure-yyo&zpx7olso6zu(w_#w*9_zr(vpb-hn&z^5xi01m*4x$-7zkl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.vercel.app', 'anti-memo-backend-test-11-20-2024.onrender.com']
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',  # 允许的前端源
