@@ -21,17 +21,15 @@ from django.contrib.auth.decorators import login_required
 ########################################################################### Methods 
 ###########################################################################
 
-@login_required  # Restrict access to logged-in users
 def download_db(request):
-    # Path to the SQLite file using Path
-    db_path = settings.BASE_DIR / 'db.sqlite3'  # BASE_DIR is a Path object
-    
-    # Check if the file exists
-    if not db_path.exists():
-        return HttpResponse("Database file not found", status=404)
-    
-    # Serve the file as a downloadable response
-    response = FileResponse(open(db_path, 'rb'), as_attachment=True, filename='db.sqlite3')
+    db_path = os.path.join(settings.BASE_DIR, 'db.sqlite3')
+    if not os.path.exists(db_path):
+        return HttpResponse("Database file not found.", status=404)
+    response = FileResponse(
+        open(db_path, 'rb'),
+        as_attachment=True,
+        filename='db.sqlite3'
+    )
     return response
 
 def exam_every_record(memo_records):

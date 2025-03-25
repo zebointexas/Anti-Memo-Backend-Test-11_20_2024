@@ -3,8 +3,6 @@ from . import views
 
 urlpatterns = [
     path('download-db/', views.download_db, name='download_db'),  # New endpoint
-    path("notes/", views.NoteListCreate.as_view(), name="note-list"),
-    path("notes/delete/<int:pk>/", views.NoteDelete.as_view(), name="delete-note"),
     path("memo_records_list/", views.MemoRecordList.as_view(), name="memo-records-list"),
     path("memo_records/create/", views.MemoRecordCreate.as_view(), name="create-memo-record"),
     path("memo_records/delete/<int:pk>/", views.MemoRecordDelete.as_view(), name="delete-memo-record"),
