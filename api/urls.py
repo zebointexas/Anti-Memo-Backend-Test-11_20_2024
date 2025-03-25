@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('download-db/', views.download_db, name='download_db'),  # New endpoint
     path("notes/", views.NoteListCreate.as_view(), name="note-list"),
     path("notes/delete/<int:pk>/", views.NoteDelete.as_view(), name="delete-note"),
     path("memo_records_list/", views.MemoRecordList.as_view(), name="memo-records-list"),

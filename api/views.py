@@ -12,10 +12,27 @@ from django.conf import settings
 from django.db.models import Q
 from django.db.models import Case, When, Value, IntegerField
 import random
+from django.http import FileResponse, HttpResponse  # Add FileResponse here
+import os
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 ###########################################################################
 ########################################################################### Methods 
 ###########################################################################
+
+@login_required  # Restrict access to logged-in users
+def download_db(request):
+    # Path to the SQLite file using Path
+    db_path = settings.BASE_DIR / 'db.sqlite3'  # BASE_DIR is a Path object
+    
+    # Check if the file exists
+    if not db_path.exists():
+        return HttpResponse("Database file not found", status=404)
+    
+    # Serve the file as a downloadable response
+    response = FileResponse(open(db_path, 'rb'), as_attachment=True, filename='db.sqlite3')
+    return response
 
 def exam_every_record(memo_records):
 
