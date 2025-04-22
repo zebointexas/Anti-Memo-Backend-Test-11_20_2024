@@ -67,13 +67,13 @@ class ApiConfig(AppConfig):
             app_url = 'https://anti-memo-frontend-test-11-20-2024.onrender.com/login'
             app_url2 = 'https://anti-memo-backend-test-11-20-2024.onrender.com/api/token/'
             
-            # Create and start ping service
-            ping_service = PingService(url=app_url, min_interval=5, max_interval=14)
-            ping_service.start()
+            # # Create and start ping service
+            # ping_service = PingService(url=app_url, min_interval=5, max_interval=14)
+            # ping_service.start()
             
-            # Create and start another ping service
-            ping_service2 = PingService(url=app_url2, min_interval=5, max_interval=14)
-            ping_service2.start()
+            # # Create and start another ping service
+            # ping_service2 = PingService(url=app_url2, min_interval=5, max_interval=14)
+            # ping_service2.start()
 
 # Use the above code in apps.py
 # Then add this in __init__.py:

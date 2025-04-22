@@ -30,6 +30,9 @@ def download_db(request):
         as_attachment=True,
         filename='db.sqlite3'
     )
+    
+    print("--------------")
+    
     return response
 
 def exam_every_record(memo_records):
@@ -364,7 +367,7 @@ class BlogList(generics.ListCreateAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        return Blog.objects.filter(author=user).order_by('-created_at')
+        return Blog.objects.filter(author=user).order_by('-last_updated')
     
 class SpecificBlog(generics.ListCreateAPIView):
     serializer_class = BlogSerializer
