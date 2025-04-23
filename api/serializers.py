@@ -112,6 +112,7 @@ class MemoRecordSerializer(serializers.ModelSerializer):
             "next_study_time",
             "author",
             "is_activate",
+            "current_learning_session",
             "created_at"
         ]
         extra_kwargs = {

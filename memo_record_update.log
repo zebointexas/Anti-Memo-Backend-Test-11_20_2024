@@ -9146,3 +9146,279 @@ Traceback (most recent call last):
     return token.decode('utf-8')
 AttributeError: 'str' object has no attribute 'decode'
 "POST /api/token/ HTTP/1.1" 500 119600
+Internal Server Error: /api/memo_records_list/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/generics.py", line 243, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 530, in get_queryset
+    return get_seleted_50_memo_records(memo_records, 12)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 84, in get_seleted_50_memo_records
+    print("timezone.now() = " + timezone.now())
+TypeError: can only concatenate str (not "datetime.datetime") to str
+"GET /api/memo_records_list/ HTTP/1.1" 500 115117
+Internal Server Error: /api/memo_records_list/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/generics.py", line 243, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 531, in get_queryset
+    return get_seleted_50_memo_records(memo_records, 12)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 86, in get_seleted_50_memo_records
+    print("time_limit = " + time_limit)
+TypeError: can only concatenate str (not "datetime.datetime") to str
+"GET /api/memo_records_list/ HTTP/1.1" 500 115176
+Internal Server Error: /api/memo_records_list/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/generics.py", line 243, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 521, in get_queryset
+    memo_records = filter_by_next_study_time(user)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 57, in filter_by_next_study_time
+    memo_records = MemoRecord.objects.filter(author=user, next_study_time__lte= timezone.now(), is_activate=True, current_Learning_Session=True).select_related('study_plan_id', 'study_history_id', 'study_scope_id').order_by('next_study_time')
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1546, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1577, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1427, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1237, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1725, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'current_Learning_Session' into field. Choices are: author, author_id, created_at, current_learning_session, id, importance_level, in_half_year_repetition, is_activate, last_updated, next_study_time, question, record_details, record_neighbor, study_history_id, study_history_id_id, study_plan_id, study_plan_id_id, study_scope_id, study_scope_id_id, subject_type
+"GET /api/memo_records_list/ HTTP/1.1" 500 173465
+Internal Server Error: /api/memo_records/reset-current-learning-session/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 2053, in get_prep_value
+    return int(value)
+ValueError: invalid literal for int() with base 10: 'Algo'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 379, in post
+    subject_type = SubjectType.objects.get(id=subject_type_id)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/query.py", line 623, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1546, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1577, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1492, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1319, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/lookups.py", line 341, in get_prep_lookup
+    return super().get_prep_lookup()
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/lookups.py", line 85, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 2055, in get_prep_value
+    raise e.__class__(
+ValueError: Field 'id' expected a number but got 'Algo'.
+"POST /api/memo_records/reset-current-learning-session/ HTTP/1.1" 500 163505
+Internal Server Error: /api/memo_records/reset-current-learning-session/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 2053, in get_prep_value
+    return int(value)
+ValueError: invalid literal for int() with base 10: 'Algo'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 379, in post
+    subject_type = SubjectType.objects.get(id=subject_type)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/query.py", line 623, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1546, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1577, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1492, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1319, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/lookups.py", line 27, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/lookups.py", line 341, in get_prep_lookup
+    return super().get_prep_lookup()
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/lookups.py", line 85, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/db/models/fields/__init__.py", line 2055, in get_prep_value
+    raise e.__class__(
+ValueError: Field 'id' expected a number but got 'Algo'.
+"POST /api/memo_records/reset-current-learning-session/ HTTP/1.1" 500 163493
+Internal Server Error: /api/memo_records/reset-current-learning-session/
+"POST /api/memo_records/reset-current-learning-session/ HTTP/1.1" 500 74
+Internal Server Error: /api/memo_records/reset-current-learning-session/
+"POST /api/memo_records/reset-current-learning-session/ HTTP/1.1" 500 74
+Internal Server Error: /api/memo_records_list/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/generics.py", line 243, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 576, in get_queryset
+    memo_records = exam_every_record(memo_records)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 50, in exam_every_record
+    check_study_history_and_update_next_study_time(memo_records, record, last_seven_lines, study_history_last_updated_time)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 329, in check_study_history_and_update_next_study_time
+    memo_record.next_study_time = timezone.now() + timedelta(minutes=wait_time) - 1
+TypeError: unsupported operand type(s) for -: 'datetime.datetime' and 'int'
+"GET /api/memo_records_list/ HTTP/1.1" 500 138558
+Internal Server Error: /api/memo_records_list/
+Traceback (most recent call last):
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/generics.py", line 243, in get
+    return self.list(request, *args, **kwargs)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/11_20_Test_Demo_Envi_Python_3.9/lib/python3.9/site-packages/rest_framework/mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 576, in get_queryset
+    memo_records = exam_every_record(memo_records)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 50, in exam_every_record
+    check_study_history_and_update_next_study_time(memo_records, record, last_seven_lines, study_history_last_updated_time)
+  File "/Users/dior/Documents/Channel_3rd_Backup_2021_0122/4_Work/Projects/Django-React-Full-Stack/TEST_TU/backend_Demo_Test/api/views.py", line 329, in check_study_history_and_update_next_study_time
+    memo_record.next_study_time = timezone.now() + timedelta(minutes=wait_time) - 1
+TypeError: unsupported operand type(s) for -: 'datetime.datetime' and 'int'
+"GET /api/memo_records_list/ HTTP/1.1" 500 138558

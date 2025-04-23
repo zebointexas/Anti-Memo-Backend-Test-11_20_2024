@@ -54,7 +54,7 @@ def exam_every_record(memo_records):
 
 def filter_by_next_study_time(user): 
 
-    memo_records = MemoRecord.objects.filter(author=user, next_study_time__lte= timezone.now(), is_activate=True).select_related('study_plan_id', 'study_history_id', 'study_scope_id').order_by('next_study_time')
+    memo_records = MemoRecord.objects.filter(author=user, next_study_time__lte= timezone.now(), is_activate=True, current_learning_session=True).select_related('study_plan_id', 'study_history_id', 'study_scope_id').order_by('next_study_time')
  
     return memo_records; 
 
@@ -309,7 +309,7 @@ def check_study_history_and_update_next_study_time(all_memo_records, memo_record
     # if(memo_record.subject_type == "Algo"):
 
     if remember_count == 0: 
-            wait_time = 1
+            wait_time = 0
     elif remember_count == 1: 
             wait_time = 5
     elif remember_count == 2: 
@@ -360,6 +360,57 @@ def check_study_history_and_update_next_study_time(all_memo_records, memo_record
 ###########################################################################
 ########################################################################### classes 
 ########################################################################### 
+
+class MemoRecordTop15(generics.ListAPIView):
+    serializer_class = MemoRecordSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        subject_type = self.request.GET.get('subject_type')
+
+        if not subject_type:
+            return MemoRecord.objects.none()
+
+        return MemoRecord.objects.filter(
+            author=user,
+            subject_type=subject_type,
+            current_learning_session=False,
+            is_activate=True
+        ).order_by('next_study_time')[:15]
+
+class MemoRecordResetCurrentLearningSession(generics.GenericAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        subject_type = request.data.get('subject_type')
+
+        if not subject_type:
+            return Response(
+                {"error": "subject_type is required."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+ 
+        # 更新 MemoRecord 记录
+        try:
+            updated_count = MemoRecord.objects.filter(
+                subject_type=subject_type, author=user
+            ).update(current_learning_session=False)
+        except Exception as e:
+            return Response(
+                {"error": f"Failed to update records: {str(e)}"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
+        return Response(
+            {
+                "message": f"Successfully reset {updated_count} records' current_learning_session to False.",
+                "subject_type": subject_type,
+                "updated_count": updated_count
+            },
+            status=status.HTTP_200_OK
+        )
 
 class BlogList(generics.ListCreateAPIView):
     serializer_class = BlogSerializer

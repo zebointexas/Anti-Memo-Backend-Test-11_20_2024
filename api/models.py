@@ -158,6 +158,7 @@ class MemoRecord(models.Model):
     record_neighbor = models.CharField(max_length=100, default="N/A")
     next_study_time = models.DateTimeField(auto_now_add=True)
     is_activate = models.BooleanField(default=True)
+    current_learning_session = models.BooleanField(default=False)
     author = models.ForeignKey(
         User, 
         on_delete=models.CASCADE, 

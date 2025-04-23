@@ -26,4 +26,7 @@ urlpatterns = [
     path("blog/delete/<int:pk>/", views.BlogDelete.as_view(), name="delete-blog"),
 
     path("study_plan/reset/<int:pk>/", views.StudyPlanReset.as_view(), name="study-plan-reset"),
+    
+    path("memo_records/reset-current-learning-session/", views.MemoRecordResetCurrentLearningSession.as_view(), name="reset-current-learning-session"),
+    path("memo_records/top15/", views.MemoRecordTop15.as_view(), name="memo-records-top15"),
 ]
