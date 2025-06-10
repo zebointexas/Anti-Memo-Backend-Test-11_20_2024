@@ -377,7 +377,7 @@ class MemoRecordTop15(generics.ListAPIView):
             subject_type=subject_type,
             current_learning_session=False,
             is_activate=True
-        ).order_by('next_study_time')[:15]
+        ).order_by('next_study_time')[:5]  ### Attention: This is 5 here - not 15. A temporary solution. 
 
 class MemoRecordResetCurrentLearningSession(generics.GenericAPIView):
     permission_classes = [IsAuthenticated]
